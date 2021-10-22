@@ -7,7 +7,7 @@ require('dotenv').config()
 // app.use(express.json())
 
 
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
 app.use(express.json());
 
 // app.get('/hello', (req,res)=>{
