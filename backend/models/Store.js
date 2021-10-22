@@ -1,6 +1,18 @@
 const mongoose = require('mongoose')
 const ProductSchema = new mongoose.Schema({
-
+        productBrand: String, 
+        productName: String,
+        quantity: Number,
+        price: String, 
+        size: String, 
+        imageUrl: String,
+        productDetails:{
+            type:[String]
+        },
+        // _id: {
+        //     type: mongoose.Schema.Types.ObjectId
+        // }
+    
 })
 const StoreSchema = new mongoose.Schema({
      
@@ -21,22 +33,7 @@ const StoreSchema = new mongoose.Schema({
         required: [true, 'must provide address'],
         trim: true,
     },
-    products:{
-        type: {
-            productBrand: String, 
-            productName: String,
-            quantity: Number,
-            price: String, 
-            size: String, 
-            imageUrl: String,
-            productDetails:{
-                type:[String]
-            },
-            _id: {
-                type: mongoose.Schema.Types.ObjectId
-            }
-        },
-    },
+    products:[ProductSchema],
     imageUrl: String,
     registered: {
         type: Boolean,

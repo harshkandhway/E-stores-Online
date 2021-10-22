@@ -45,9 +45,12 @@ const getStore = async (req,res)=>{
 const updateStore = async (req,res)=>{
     try{
         const {id:storeID} = req.params
-        console.log(req.body.store.name);
+        console.log(req.body);
         console.log(storeID);
-        const store = await Store.findByIdAndUpdate({_id:storeID},req.body.store.name)
+        const store = await Store.findOneAndUpdate({_id:storeID},req.body,{
+            new: true,
+            runValidators: true,
+          })
         if(!store){
             return res.status(404).json({msg:`No store with id: ${storeID}`})
         }
