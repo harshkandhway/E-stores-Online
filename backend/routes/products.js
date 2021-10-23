@@ -9,7 +9,7 @@ const {
 } = require('../controllers/products')
 
 router.route('/:id/products/').get(getAllProducts).post(createProducts)
-router.route('/:id/products/:productId').get(getProduct).patch(updateProduct).delete(deleteProduct)
+router.route('/:id/products/:productId/').get(getProduct).patch(updateProduct).delete(deleteProduct)
 
 
 module.exports = router

@@ -13,7 +13,6 @@ const getAllStores = async (req,res)=>{
 
 const createStores = async (req,res)=>{
     try{
-    
     const store = await Store.create(req.body)
     res.status(201).json({store})
     }
@@ -21,10 +20,6 @@ const createStores = async (req,res)=>{
         res.status(500).json({msg: error.message})
     }
 }
-// const createStores = (req,res)=>{
-//     const store = Store.create(req.body)
-//     res.status(201).json({store})
-// }
 
 const getStore = async (req,res)=>{
     try{
