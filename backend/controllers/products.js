@@ -20,8 +20,16 @@ const createProducts = async (req, res) => {
     try {
         const { id: storeID } = req.params
         const store = await Store.findOne({ _id: storeID })
-        const product = await store.products.create(req.body)
-        res.status(201).json({ product })
+        // console.log("checking",store.products);
+        let p = store.products;
+        p.push(req.body)
+        store.products = p
+        // console.log(p)
+        const storeNew = await Store.findOneAndUpdate({ _id: storeID }, store, {
+            new: true,
+            runValidators: true,
+        })
+        res.status(201).json( {storeNew})
     }
     catch (error) {
         res.status(500).json({ msg: error.message })
