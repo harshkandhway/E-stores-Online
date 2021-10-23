@@ -2,21 +2,25 @@ const express = require('express')
 const connectDB = require('./db/connect')
 const app = express()
 const stores = require('./routes/stores')
+const products = require('./routes/products')
 require('./db/connect')
 require('dotenv').config()
-// app.use(express.json())
+const morgan = require('morgan')
+const notFoundMiddleware = require('./middleware/not-found')
+const authRouter = require('./routes/authRoutes')
 
 
 // app.use(express.static('./public'));
+app.use(morgan('tiny'))
 app.use(express.json());
 
-// app.get('/hello', (req,res)=>{
-//     res.send('Store manager app')
-// })
+
+
 
 app.use('/api/v1/stores',stores)
-
-
+app.use('/api/v1/stores',products)
+app.use('/api/v1/auth',authRouter)
+app.use(notFoundMiddleware);
 const port = 3001
 
 connectDB(process.env.MONGO_URI).then(()=>{

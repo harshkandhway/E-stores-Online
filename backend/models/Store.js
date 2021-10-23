@@ -1,19 +1,20 @@
 const mongoose = require('mongoose')
-const ProductSchema = new mongoose.Schema({
-        productBrand: String, 
-        productName: String,
-        quantity: Number,
-        price: String, 
-        size: String, 
-        imageUrl: String,
-        productDetails:{
-            type:[String]
-        },
-        // _id: {
-        //     type: mongoose.Schema.Types.ObjectId
-        // }
+const Product = require('./Product')
+// const ProductSchema = new mongoose.Schema({
+//         productBrand: String, 
+//         productName: String,
+//         quantity: Number,
+//         price: String, 
+//         size: String, 
+//         imageUrl: String,
+//         productDetails:{
+//             type:[String]
+//         },
+//         // _id: {
+//         //     type: mongoose.Schema.Types.ObjectId
+//         // }
     
-})
+// })
 const StoreSchema = new mongoose.Schema({
      
     name: {
@@ -33,7 +34,7 @@ const StoreSchema = new mongoose.Schema({
         required: [true, 'must provide address'],
         trim: true,
     },
-    products:[ProductSchema],
+    products:[Product],
     imageUrl: String,
     registered: {
         type: Boolean,
@@ -44,3 +45,4 @@ const StoreSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('Store', StoreSchema)
+// module.exports = mongoose.model('Product', Product)

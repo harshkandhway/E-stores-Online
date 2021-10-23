@@ -11,4 +11,5 @@ const {
 router.route('/').get(getAllStores).post(createStores)
 router.route('/:id').get(getStore).patch(updateStore).delete(deleteStore)
 
+
 module.exports = router
