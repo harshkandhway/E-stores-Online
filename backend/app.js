@@ -8,13 +8,16 @@ require('dotenv').config()
 const morgan = require('morgan')
 const notFoundMiddleware = require('./middleware/not-found')
 const authRouter = require('./routes/authRoutes')
+const userRouter = require('./routes/userRoutes')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 
 // app.use(express.static('./public'));
 app.use(morgan('tiny'))
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET))
+app.use(cors())
 // process.env.JWT_SECRET
 
 app.get('/api/v1',(req,res)=>{
@@ -26,6 +29,7 @@ app.get('/api/v1',(req,res)=>{
 app.use('/api/v1/stores',stores)
 app.use('/api/v1/stores',products)
 app.use('/api/v1/auth',authRouter)
+app.use('/api/v1/users', userRouter);
 app.use(notFoundMiddleware);
 
 

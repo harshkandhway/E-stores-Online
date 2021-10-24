@@ -54,24 +54,24 @@ const updateStore = async (req,res)=>{
     }
 }
 
-const updateProduct = async (req,res)=>{
-    try{
-        const {id:storeID} = req.params
-        console.log(req.body);
-        console.log(storeID);
-        const store = await Store.findOneAndUpdate({_id:storeID},req.body,{
-            new: true,
-            runValidators: true,
-          })
-        if(!store){
-            return res.status(404).json({msg:`No store with id: ${storeID}`})
-        }
-        res.status(200).json({store})
-    }
-    catch(error){
-        res.status(500).json({msg:error})
-    }
-}
+// const updateProduct = async (req,res)=>{
+//     try{
+//         const {id:storeID} = req.params
+//         console.log(req.body);
+//         console.log(storeID);
+//         const store = await Store.findOneAndUpdate({_id:storeID},req.body,{
+//             new: true,
+//             runValidators: true,
+//           })
+//         if(!store){
+//             return res.status(404).json({msg:`No store with id: ${storeID}`})
+//         }
+//         res.status(200).json({store})
+//     }
+//     catch(error){
+//         res.status(500).json({msg:error})
+//     }
+// }
 
 const deleteStore = async (req,res)=>{
     try{
