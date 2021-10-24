@@ -1,8 +1,9 @@
 const User = require('../models/user.js');
 
 const getAllUsers = async (req, res) => {
-    console.log(User.schema)
+    // console.log(User.schema)
     try {
+        console.log(req.user);
         const user = await User.find({role:'user'}).select('-password')
         res.status(200).json({ user })
     }

@@ -1,7 +1,7 @@
 const Store = require("../models/Store")
 
 const getAllStores = async (req,res)=>{
-    console.log(Store.schema)
+    // console.log(Store.schema)
     try{
         const store = await Store.find({})
         res.status(200).json({store})
@@ -38,8 +38,8 @@ const getStore = async (req,res)=>{
 const updateStore = async (req,res)=>{
     try{
         const {id:storeID} = req.params
-        console.log(req.body);
-        console.log(storeID);
+        // console.log(req.body);
+        // console.log(storeID);
         const store = await Store.findOneAndUpdate({_id:storeID},req.body,{
             new: true,
             runValidators: true,
