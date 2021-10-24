@@ -8,12 +8,13 @@ require('dotenv').config()
 const morgan = require('morgan')
 const notFoundMiddleware = require('./middleware/not-found')
 const authRouter = require('./routes/authRoutes')
+const cookieParser = require('cookie-parser')
 
 
 // app.use(express.static('./public'));
 app.use(morgan('tiny'))
 app.use(express.json());
-
+app.use(cookieParser())
 
 
 
