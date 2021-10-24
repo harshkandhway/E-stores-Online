@@ -30,10 +30,29 @@ const register= async(req, res)=>{
     }
 }
 const login = async(req, res)=>{
-    res.send('login user');
+    const {email,password}=req.body;
+    if(!email||!password){
+        return res.status(404).json({msg:`email not found`})
+    }
+    const user = await User.findOne({email});
+    if(!user){
+        return res.status(404).json({msg:`invalid Credentials`})
+    }
+    const isPasswordCorrect = await user.comparePassword(password)
+    if(!isPasswordCorrect){
+        return res.status(404).json({msg:`invalid Credentials`})
+    }
+    const tokenUser = { name: user.name, email:user.email, userId:user._id, role: user.role }
+        const token = createJWT({payload:tokenUser})
+        attachCookiesToResponse({res,user:tokenUser})
+        res.status(200).json({user:tokenUser,token})
 };
 const logout= async(req,res)=>{
-    res.send('logout user');
+    res.cookie('token','logout',{
+        httpOnly:true,
+        expires:new Date(Date.now())
+    });
+    res.json({msg:`user logged out`})
 };
 
 module.exports = {
