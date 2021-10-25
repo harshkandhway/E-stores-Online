@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const {checkPermissions} = require('../utils/checkPermissions');
 
 const getAllUsers = async (req, res) => {
     // console.log(User.schema)
@@ -12,15 +13,6 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-// const createUser = async (req,res)=>{
-//     try{
-//     const user = await User.create(req.body)
-//     res.status(201).json({user})
-//     }
-//     catch(error){
-//         res.status(500).json({msg: error.message})
-//     }
-// }
 
 const getSingleUser = async (req, res) => {
     try {
@@ -29,10 +21,15 @@ const getSingleUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ msg: `No user with id: ${user}` })
         }
+        //bug
+        const isPermission = checkPermissions(req.user, user._id);
+        if(isPermission)
         res.status(200).json({ user })
+        else
+        return res.status(401).json({msg:`You are not authorized to check different user`})
     }
     catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ msgqq: error })
     }
 }
 
@@ -40,7 +37,7 @@ const showCurrentUser = async (req, res) => {
     res.status(200).json({ user: req.user });
 };
 
-const updateUser = async (req, res) => {
+// const updateUser = async (req, res) => {
     // try{
     //     const {id:userID} = req.params
     //     console.log(req.body);
@@ -52,14 +49,14 @@ const updateUser = async (req, res) => {
     //     if(!user){
     //         return res.status(404).json({msg:`No user with id: ${userID}`})
     //     }
-    res.status(200).json(`update user`)
+    // res.status(200).json(`update user`)
     // }
     // catch(error){
     //     res.status(500).json({msg:error})
     // }
-}
+// }
 
-const updateUserPassword = async (req, res) => {
+// const updateUserPassword = async (req, res) => {
     // try{
     //     const {id:userID} = req.params
     //     console.log(req.body);
@@ -71,17 +68,15 @@ const updateUserPassword = async (req, res) => {
     //     if(!user){
     //         return res.status(404).json({msg:`No user with id: ${userID}`})
     //     }
-    res.status(200).json(`update user password`)
+    // res.status(200).json(`update user password`)
     // }
     // catch(error){
     //     res.status(500).json({msg:error})
     // }
-}
+// }
 
 module.exports = {
     getAllUsers,
     getSingleUser,
-    showCurrentUser,
-    updateUser,
-    updateUserPassword
+    showCurrentUser
 }
