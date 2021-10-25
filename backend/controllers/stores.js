@@ -1,4 +1,6 @@
 const Store = require("../models/Store")
+// const User = require('../models/user.js');
+const {checkPermissions} = require('../utils/checkPermissions');
 
 const getAllStores = async (req,res)=>{
     // console.log(Store.schema)
@@ -28,7 +30,11 @@ const getStore = async (req,res)=>{
         if(!store){
             return res.status(404).json({msg: `No store with id: ${store}`})
         }
+        // const isPermission = checkPermissions(req.user, store._id);
+        // if(isPermission)
         res.status(200).json({store})
+        // else
+        // return res.status(401).json({msg:`You are not authorized to check different store`})
 }
     catch(error){
         res.status(500).json({msg:error})

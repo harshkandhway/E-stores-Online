@@ -1,4 +1,5 @@
 const express = require('express')
+const {authenticateUser,authorizePermissions} = require('../middleware/authentication.js')
 const router = express.Router()
 const {
     getAllStores,
@@ -8,8 +9,8 @@ const {
     deleteStore
 } = require('../controllers/stores')
 
-router.route('/').get(getAllStores).post(createStores)
-router.route('/:id').get(getStore).patch(updateStore).delete(deleteStore)
+router.route('/').get(authenticateUser, authorizePermissions('admin'),getAllStores).post(authenticateUser, authorizePermissions('admin'),createStores)
+router.route('/:id').get(authenticateUser,getStore).patch(authenticateUser, authorizePermissions('admin'),updateStore).delete(authenticateUser, authorizePermissions('admin'),deleteStore)
 
 
 module.exports = router

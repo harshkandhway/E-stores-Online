@@ -1,4 +1,5 @@
 const express = require('express')
+const {authenticateUser,authorizePermissions} = require('../middleware/authentication.js')
 const router = express.Router()
 const {
     getAllProducts,
@@ -8,8 +9,8 @@ const {
     deleteProduct
 } = require('../controllers/products')
 
-router.route('/:id/products/').get(getAllProducts).post(createProducts)
-router.route('/:id/products/:productId/').get(getProduct).patch(updateProduct).delete(deleteProduct)
+router.route('/:id/products/').get(authenticateUser,getAllProducts).post(authenticateUser,createProducts)
+router.route('/:id/products/:productId/').get(authenticateUser,getProduct).patch(authenticateUser,updateProduct).delete(authenticateUser,deleteProduct)
 
 
 module.exports = router
