@@ -16,6 +16,16 @@ const authenticateUser = async (req,res,next)=>{
     }
 }
 
+const authorizePermissions = (...roles) =>
+(req,res,next)=>{
+    if(!roles.includes(req.user.role)){
+        res.status(401).json({msg:`You are not authorized`})
+        next();
+    }
+    next()
+}
+
 module.exports = {
-    authenticateUser
+    authenticateUser,
+    authorizePermissions
 }
