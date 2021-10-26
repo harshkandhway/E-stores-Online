@@ -6,11 +6,12 @@ const {
     createProducts,
     getProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    uploadImage
 } = require('../controllers/products')
 
 router.route('/:id/products/').get(authenticateUser,getAllProducts).post(authenticateUser,createProducts)
 router.route('/:id/products/:productId/').get(authenticateUser,getProduct).patch(authenticateUser,updateProduct).delete(authenticateUser,deleteProduct)
-
+router.route('/:id/products/:productId/uploadImage').post(authenticateUser,uploadImage)
 
 module.exports = router

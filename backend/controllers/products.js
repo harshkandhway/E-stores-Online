@@ -1,4 +1,6 @@
 const Store = require("../models/Store")
+const fs = require('fs');
+const path = require('path')
 
 const getAllProducts = async (req, res) => {
     try {
@@ -98,6 +100,38 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+const uploadImage = async(req,res)=>{
+    if(!req.files){
+        return res.status(400).json({msg:`No file uploaded`})
+    }
+    const productImage = req.files.image;
+    if(!productImage.mimetype.startsWith('image')){
+        return res.status(400).json({msg:`Please upload an image file`})
+    }
+    if(productImage.size>1024*1024){
+        return res.status(400).json({msg:`Please upload an image file less than 1 MB`})
+    }
+    const {id:storeID} = req.params
+    const {productId} = req.params
+    const store = await Store.findOne({_id:storeID})
+    if(!store){
+        return res.status(404).json({msg:`No store with id: ${storeID}`})
+    }
+    fs.mkdir(path.join(__dirname, '../public/uploads/' + `${store._id}/` + `${productId}`),
+    {recursive:true}, (err) => {
+        if (err) {
+            return res.status(400).json({msg:err})
+        }
+        console.log('Directory created successfully!');
+    });
+
+    const imagePath = path.join(__dirname,`../public/uploads/${store._id}/${productId}/` + `${productImage.name}`);
+    await productImage.mv(imagePath);
+    res.status(200).json({image: `/uploads/${productImage.name}`});
+    // console.log(req.files);
+    // res.send('upload image')
+}
+
 module.exports = {
-    getAllProducts, createProducts, getProduct, updateProduct, deleteProduct
+    getAllProducts, createProducts, getProduct, updateProduct, deleteProduct, uploadImage
 }
