@@ -1,6 +1,8 @@
 const Store = require("../models/Store")
 // const User = require('../models/user.js');
 const {checkPermissions} = require('../utils/checkPermissions');
+const fs = require('fs');
+const path = require('path')
 
 const getAllStores = async (req,res)=>{
     // console.log(Store.schema)
@@ -84,7 +86,7 @@ const deleteStore = async (req,res)=>{
         const {id:storeID} = req.params
         const store = await Store.findOneAndDelete({_id:storeID})
         if(!store){
-            return res.status(200).json({msg:`No store with id: ${storeID}`})
+            return res.status(400).json({msg:`No store with id: ${storeID}`})
         }
         res.status(200).json({store})
     }
@@ -93,6 +95,37 @@ const deleteStore = async (req,res)=>{
     }
 }
 
+const uploadImage = async(req,res)=>{
+    if(!req.files){
+        return res.status(400).json({msg:`No file uploaded`})
+    }
+    const productImage = req.files.image;
+    if(!productImage.mimetype.startsWith('image')){
+        return res.status(400).json({msg:`Please upload an image file`})
+    }
+    if(productImage.size>1024*1024){
+        return res.status(400).json({msg:`Please upload an image file less than 1 MB`})
+    }
+    const {id:storeID} = req.params
+    const store = await Store.findOne({_id:storeID})
+    if(!store){
+        return res.status(404).json({msg:`No store with id: ${storeID}`})
+    }
+    fs.mkdir(path.join(__dirname, '../public/uploads/' + `${store._id}`),
+    {recursive:true}, (err) => {
+        if (err) {
+            return res.status(400).json({msg:err})
+        }
+        console.log('Directory created successfully!');
+    });
+
+    const imagePath = path.join(__dirname,`../public/uploads/${store._id}/` + `${productImage.name}`);
+    await productImage.mv(imagePath);
+    res.status(200).json({image: `/uploads/${productImage.name}`});
+    // console.log(req.files);
+    // res.send('upload image')
+}
+
 module.exports = { 
-    getAllStores,createStores, getStore , updateStore, deleteStore 
+    getAllStores,createStores, getStore , updateStore, deleteStore,uploadImage
 }
