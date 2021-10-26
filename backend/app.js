@@ -9,6 +9,7 @@ const morgan = require('morgan')
 const notFoundMiddleware = require('./middleware/not-found')
 const authRouter = require('./routes/authRoutes')
 const userRouter = require('./routes/userRoutes')
+const order = require('./routes/order')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
@@ -29,10 +30,11 @@ app.get('/api/v1',(req,res)=>{
 })
 
 
-app.use('/api/v1/stores',stores)
-app.use('/api/v1/stores',products)
-app.use('/api/v1/auth',authRouter)
+app.use('/api/v1/stores',stores);
+app.use('/api/v1/stores',products);
+app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/order', order);
 app.use(notFoundMiddleware);
 
 
