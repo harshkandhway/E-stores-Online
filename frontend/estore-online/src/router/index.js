@@ -11,11 +11,11 @@ import AppProduct from '@/components/AppProduct'
 
 const router = new Router({
     mode: 'history',
-    routes:[
+    routes: [
         {
             nme: 'HomePage',
-            path:'/',
-            component:HomePage
+            path: '/',
+            component: HomePage
         },
         {
             name: 'Login',
@@ -31,19 +31,25 @@ const router = new Router({
             name: 'AppStore',
             path: '/store',
             component: AppStore,
-            children:[
-                {
-                    name: 'AppProduct',
-                    path: '/store/product',
-                    component: AppProduct
-                },
-                {
-                    name: 'AppCart',
-                    path: '/store/cart',
-                    component: AppCart
-                }
-            ]
         },
+        {
+            name: 'AppProduct',
+            path: '/store/product',
+            component: AppProduct,
+            props: true
+        },
+        {
+            name: 'AppCart',
+            path: '/store/cart',
+            component: AppCart,
+            props: true
+        },
+        {
+            name: 'ProductDetail',
+            path: '/store/product/productDetails',
+            component: AppCart,
+            props: true
+        }
         // {
         //     name: 'PageNotFound',
         //     path: '*',

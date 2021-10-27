@@ -14,14 +14,16 @@
         <input type="password" name="password" placeholder="Password" class="input-style" v-model="formLogin.password"/>
         <input type="submit" value="Sign In" class="submit" />
       </form>
-      <div class="forgot-password">
-        <a href="#">Forgot Password ?</a>
+      <div class="forgot-password" v-if="!isAuthenticated">
+        <span>Invalid login or password</span> 
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import Vue from 'vue';
+// import {login} from '@/services/login'
 export default {
   name: "Login",
   data() {
@@ -32,9 +34,24 @@ export default {
       }
     };
   },
+    computed:{
+        isAuthenticated(){
+            return this.$store.getters.isAuthenticated;
+        }
+    },
+
+
   methods:{
       login(){
-          
+          this.$store
+        .dispatch("login", this.formLogin)
+        .then(() => {
+            this.$router.push({ name: "AppStore" });
+        })
+        .catch(error => {
+          console.log(error);
+          console.log("is auth", this.$store.getters.isAuthenticated);
+        });
       }
   }
 };

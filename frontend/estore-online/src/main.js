@@ -6,13 +6,13 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import './init'
 import router from '@/router'
-// import stores from '@/stores';
+import store from '@/stores';
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
-  // stores,
+  store,
   vuetify,
   render: h => h(App)
 }).$mount('#app')

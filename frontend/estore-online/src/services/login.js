@@ -4,11 +4,13 @@ import Vue from  'vue';
 function login(credentials){
     const config = {
         method: 'POST',
-        url: 'http://localhost:3001/api/v1/auth/login',
+        url: 'http://localhost:8080/api/v1/auth/login',
         headers:{
             'Content-Type': 'application/json',
         },
-        data: credentials
+        // withCredentials:true,
+        data: credentials,
+        
     }
     return axios(config).then((res)=>res.data)
     .catch(()=>Vue.$toast.open({

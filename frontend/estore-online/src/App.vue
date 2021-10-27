@@ -9,32 +9,37 @@
       <v-toolbar-title class="store-name">E-Stores Online</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn 
+    <ul class="nav-icon">
+      <li><v-btn 
         class="link-router"
         to='/'
       icon>
-        <v-icon>mdi-home</v-icon>
-      </v-btn>
+        <v-icon>mdi-home</v-icon><span>Home</span>
+      </v-btn></li>
 
-      <v-btn 
+      <li><v-btn 
       class="link-router"
        to="/store"
       icon>
-        <v-icon>mdi-store</v-icon>
-      </v-btn>
-        <v-btn 
+        <v-icon>mdi-store</v-icon><span>Home</span>
+      </v-btn></li>
+
+      <li><v-btn 
         class="link-router"
         to="/login"
         icon>
-        <v-icon>mdi-account-outline</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-cards-playing-heart</v-icon>
-      </v-btn>
+        <v-icon>mdi-account-outline</v-icon><span>Home</span>
+      </v-btn></li>
+
+      <li><v-btn icon>
+        <v-icon>mdi-cart</v-icon><span>Home</span>
+      </v-btn></li>
+
+      <li><v-btn icon>
+        <v-icon>mdi-cards-playing-heart</v-icon><span>Home</span>
+      </v-btn></li>
+    </ul>
+      
     </v-app-bar>
    </div>
    <router-view></router-view>
@@ -53,6 +58,18 @@
 *{
     font-family: 'Montserrat', sans-serif;
     /* color:#33343b; */
+}
+
+.nav-icon{
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0 30px;
+}
+
+.nav-icon li{
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0 20px;
 }
 .store-name{
     margin:0px 16px;
