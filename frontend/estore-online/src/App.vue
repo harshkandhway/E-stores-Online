@@ -1,55 +1,23 @@
 <template>
 <div>
-   <div>
-    <v-app-bar
-      class="nav-bar"
-      elevate-on-scroll
-      height="60"
-    >
-      <v-toolbar-title class="store-name">E-Stores Online</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-    <ul class="nav-icon">
-      <li><v-btn 
-        class="link-router"
-        to='/'
-      icon>
-        <v-icon>mdi-home</v-icon><span>Home</span>
-      </v-btn></li>
-
-      <li><v-btn 
-      class="link-router"
-       to="/store"
-      icon>
-        <v-icon>mdi-store</v-icon><span>Store</span>
-      </v-btn></li>
-
-      <li><v-btn 
-        class="link-router"
-        to="/login"
-        icon>
-        <v-icon>mdi-account-outline</v-icon><span>Login</span>
-      </v-btn></li>
-
-      <li><v-btn icon>
-        <v-icon>mdi-cart</v-icon><span>Cart</span>
-      </v-btn></li>
-
-      <li><v-btn icon>
-        <v-icon>mdi-cards-playing-heart</v-icon><span>Wishlist</span>
-      </v-btn></li>
-    </ul>
-      
-    </v-app-bar>
+   <div v-if="this.$store.state.auth.role === 'user' || !this.$store.getters.isAuthenticated">
+    <AppNavbar/>
+    <router-view></router-view>
    </div>
-   <router-view></router-view>
+
+  <div v-if="this.$store.state.auth.role === 'admin' && this.$store.getters.isAuthenticated"><AdminNav/></div>
    </div>
 </template>
 
 <script>
 
+import AdminNav from '@/components/AdminDashboard/AdminNav'
+import AppNavbar from '@/components/AppNavbar'
   export default{
-    
+    components:{
+      AdminNav,
+      AppNavbar
+    }
   }
 </script>
 

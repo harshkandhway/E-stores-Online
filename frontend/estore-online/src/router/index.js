@@ -8,8 +8,8 @@ import AppStore from '@/components/AppStore'
 import AppProduct from '@/components/AppProduct'
 import ProductDetail from '@/components/ProductDetail'
 // import PageNotFound from '@/components/PageNotFound';
-
-
+import StoreManagement from '@/components/AdminDashboard/StoreManagement'
+import ProductManagement from '@/components/AdminDashboard/ProductManagement'
 const router = new Router({
     mode: 'history',
     routes: [
@@ -50,12 +50,23 @@ const router = new Router({
             path: '/store/product/productDetails',
             component: ProductDetail,
             props: true
-        }
+        },
         // {
         //     name: 'PageNotFound',
         //     path: '*',
         //     component: PageNotFound
         // }
+
+        {    name: 'StoreManagement',
+            path: '/storemanage',
+            component: StoreManagement,
+        },
+        {
+            name: 'ProductManagement',
+            path: '/storemanage/productmanage',
+            component: ProductManagement,
+            props: true
+        },
     ]
 })
 

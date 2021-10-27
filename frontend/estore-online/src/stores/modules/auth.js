@@ -1,6 +1,7 @@
 import {login} from "@/services/login.js"
-import Vue from 'vue';
-const KEY_TOKEN = 'token';
+import { logout } from "@/services/login";
+// import Vue from 'vue';
+// const KEY_TOKEN = 'token';
 const KEY_EMAIL = 'email';
 const KEY_NAME = 'name';
 const KEY_ROLE = 'role';
@@ -9,17 +10,17 @@ const PRODUCT_ID = 'productId'
 
 const auth={
     state:{
-        token: Vue.$cookies.get( KEY_TOKEN ) || '',
-        email: Vue.$cookies.get( KEY_EMAIL ) || '',
-        name: Vue.$cookies.get( KEY_NAME ) || '',
-        role: Vue.$cookies.get(KEY_ROLE) || '',
-        storeId: Vue.$cookies.get(STORE_ID) || '',
-        productId: Vue.$cookies.get(STORE_ID) || ''
+        // token: Vue.$cookies.get( KEY_TOKEN ) || '',
+        email: localStorage.getItem( KEY_EMAIL ) || '',
+        name: localStorage.getItem( KEY_NAME ) || '',
+        role: localStorage.getItem(KEY_ROLE) || '',
+        storeId: localStorage.getItem(STORE_ID) || '',
+        productId: localStorage.getItem(STORE_ID) || ''
     },
     mutations: {
-        setToken( state, token ) {
-            state.token = token;
-        },
+        // setToken( state, token ) {
+        //     state.token = token;
+        // },
         setEmail( state, email ) {
             state.email = email;
         },
@@ -31,16 +32,16 @@ const auth={
         },
         setStoreId(state, storeId){
             state.storeId = storeId
-            Vue.$cookies.set(STORE_ID, storeId);
+            localStorage.setItem(STORE_ID, storeId);
         },
         setProductId(state, productId){
             state.productId = productId
-            Vue.$cookies.set(PRODUCT_ID, productId);
+            localStorage.setItem(PRODUCT_ID, productId);
         }
     },
     getters:{
         isAuthenticated(state){
-            return !!state.token
+            return !!state.email
         }
         
     },
@@ -48,13 +49,13 @@ const auth={
         login(context,credentials){
             return login(credentials)
                 .then(data=>{
-                    const{token,user}=data
-                    Vue.$cookies.set(KEY_TOKEN,token);
-                    Vue.$cookies.set(KEY_EMAIL, user.email);
-                    Vue.$cookies.set(KEY_NAME, user.name);
-                    Vue.$cookies.set(KEY_ROLE, user.role);
+                    const{user}=data
+                    // Vue.$cookies.set(KEY_TOKEN,token);
+                    localStorage.setItem(KEY_EMAIL, user.email);
+                    localStorage.setItem(KEY_NAME, user.name);
+                    localStorage.setItem(KEY_ROLE, user.role);
                     
-                    context.commit("setToken",token);
+                    // context.commit("setToken",token);
                     context.commit("setEmail",user.email);
                     context.commit("setName",user.name);
                     context.commit("setRole",user.role);
@@ -67,13 +68,28 @@ const auth={
         //     commit('setStoreId')
         // },
         logout( { commit } ) {
-            localStorage.removeItem( KEY_TOKEN );
+      logout()
+        .then(data => {
             localStorage.removeItem( KEY_EMAIL );
             localStorage.removeItem( KEY_NAME );
-        
-            commit( 'setToken', '' );
+            localStorage.removeItem( KEY_ROLE );
+            localStorage.removeItem( STORE_ID );
+            localStorage.removeItem( PRODUCT_ID );
+
             commit( 'setEmail', '' );
             commit( 'setName', '' );
+            commit( 'setRole', '' );
+            commit( 'setStoreId', '' );
+            commit( 'setProductId', '' );
+          this.$router.push({
+            name: "login"
+          });
+          console.log(data);
+        })
+        .catch(error => error);
+
+            // this.$cookies.delete( KEY_TOKEN );
+            
 
             return Promise.resolve();
         }

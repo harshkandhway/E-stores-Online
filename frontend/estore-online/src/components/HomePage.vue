@@ -3,7 +3,6 @@
     <div class="add_carousel">
       <div>
         <b-carousel
-          interval = 2000
           id="carousel-fade"
           class="carousel"
           style="text-shadow: 0px 0px 2px #000"
@@ -58,18 +57,14 @@ export default {
 .add_carousel {
   margin: 0 auto;
 }
-.new_height {
-  height: 1000px;
-}
+
 .sale-banner {
   width: 100%;
 }
 .sale-banner img {
   width: 100%;
 }
-.carousel {
-  height: 550px;
-}
+
 .discount-coupan {
   width: 100%;
   display: flex;

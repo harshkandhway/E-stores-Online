@@ -12,11 +12,11 @@
         <input type="email" name="email" placeholder="Email" class="input-style" v-model="formLogin.email"/>
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="Password" class="input-style" v-model="formLogin.password"/>
-        <input type="submit" value="Sign In" class="submit" />
+        <input type="submit" value="Sign In" class="submit" style="margin-top: 40px"/>
       </form>
-      <div class="forgot-password" v-if="!isAuthenticated">
+      <!-- <div class="forgot-password" v-if="!isAuthenticated">
         <span>Invalid login or password</span> 
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -35,9 +35,9 @@ export default {
     };
   },
     computed:{
-        isAuthenticated(){
-            return this.$store.getters.isAuthenticated;
-        }
+        // isAuthenticated(){
+        //     return this.$store.getters.isAuthenticated;
+        // }
     },
 
 
@@ -50,10 +50,11 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          
           console.log("is auth", this.$store.getters.isAuthenticated);
         });
       }
-  }
+  },
 };
 </script>
 

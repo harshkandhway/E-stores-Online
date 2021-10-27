@@ -4,7 +4,7 @@ import Vue from  'vue';
 function login(credentials){
     const config = {
         method: 'POST',
-        url: 'http://localhost:8080/api/v1/auth/login',
+        url: '/api/v1/auth/login',
         headers:{
             'Content-Type': 'application/json',
         },
@@ -20,6 +20,18 @@ function login(credentials){
       }))
 }
 
+function logout(){
+    return axios.get(`/api/v1/auth/logout`,{withCredentials:true
+},{headers:{
+        'Content-Type': 'application/json',
+        // 'Authorization' : Vue.$cookies.get('token')
+    }})
+    .then(res=>{
+        return res.data;
+    }).catch(error=>error)
+}
+
 export{
-    login
+    login,
+    logout
 }

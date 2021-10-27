@@ -10,16 +10,6 @@
                      <img src="https://media-cdn.tripadvisor.com/media/photo-s/09/4e/41/1b/domino-s-pizza-brakpan.jpg">
                  </div>
               </div>
-              <!-- <div class="store-details">
-                  <div class="store-img">
-                     <img src="https://thumbs.dreamstime.com/b/web-183282388.jpg">
-                 </div>
-              </div>
-               <div class="store-details">
-                 <div class="store-img">
-                     <img src="https://www.logotaglines.com/wp-content/uploads/2017/08/Xiaomi-logo.jpg">
-                 </div>
-              </div> -->
           </div>
       </div>
    </div>
@@ -52,6 +42,7 @@ export default{
     created(){
         store().then(data=>{
             this.stores = data.store;
+            console.log("is auth", this.$store.getters.isAuthenticated);
             // console.log(this.stores)
         })
         .catch(error=>error)
