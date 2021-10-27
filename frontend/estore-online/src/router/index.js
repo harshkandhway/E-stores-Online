@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import AppStore from '@/components/AppStore'
 import AppProduct from '@/components/AppProduct'
+import ProductDetail from '@/components/ProductDetail'
 // import PageNotFound from '@/components/PageNotFound';
 
 
@@ -47,7 +48,7 @@ const router = new Router({
         {
             name: 'ProductDetail',
             path: '/store/product/productDetails',
-            component: AppCart,
+            component: ProductDetail,
             props: true
         }
         // {

@@ -5,7 +5,7 @@ const KEY_EMAIL = 'email';
 const KEY_NAME = 'name';
 const KEY_ROLE = 'role';
 const STORE_ID = 'storeId'
-// const PRODUCT_ID = 'productId'
+const PRODUCT_ID = 'productId'
 
 const auth={
     state:{
@@ -13,8 +13,8 @@ const auth={
         email: Vue.$cookies.get( KEY_EMAIL ) || '',
         name: Vue.$cookies.get( KEY_NAME ) || '',
         role: Vue.$cookies.get(KEY_ROLE) || '',
-        storeId:Vue.$cookies.get(STORE_ID) || '',
-        productId:''
+        storeId: Vue.$cookies.get(STORE_ID) || '',
+        productId: Vue.$cookies.get(STORE_ID) || ''
     },
     mutations: {
         setToken( state, token ) {
@@ -32,6 +32,10 @@ const auth={
         setStoreId(state, storeId){
             state.storeId = storeId
             Vue.$cookies.set(STORE_ID, storeId);
+        },
+        setProductId(state, productId){
+            state.productId = productId
+            Vue.$cookies.set(PRODUCT_ID, productId);
         }
     },
     getters:{
