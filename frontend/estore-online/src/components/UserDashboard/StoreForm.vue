@@ -41,12 +41,6 @@
             </div>
             <label for="registered">Registered</label>
             <input type="checkbox" id="registered" style="margin-left:20px" v-model="store.registered">
-            <v-select
-          :items="items"
-          label="Role"
-          solo
-          v-model="form.role"
-        ></v-select>
             
                 <input type="submit" value="Submit" class="submit">
             </form>
@@ -88,7 +82,6 @@
 <script>
 import { deleteProduct } from "@/services/product";
 import { getSingleStore, modifyStore} from "@/services/store";
-import {modifyUser} from '@/services/user'
 // import Vue from 'vue'
 export default{
     name:'StoreForm',
@@ -99,11 +92,7 @@ export default{
     },
     data(){
         return{
-            store: {},
-            items:['user','customer'],
-            form:{
-                role:''
-            }
+            store: {}
         }
     },
     methods:{
@@ -120,12 +109,8 @@ export default{
             console.log(this.store)
             // let loader = this.$loading.show({loader:'dots'})
             modifyStore(this.storeId,this.store).then(data=>{
-                this.store=data.store
-                modifyUser(this.store.userId,this.form).then(data=>console.log(data))
-                })
-                
                 // loader.hide()
-                
+                this.store=data.store})
             .catch(error=>error)
             }
         
@@ -137,8 +122,7 @@ export default{
         .then(data=>{
             // loader.hide()
             this.store=data.store
-
-            console.log("req store",this.store)})
+            console.log(this.store)})
         .catch(error=>error)
     }
 }

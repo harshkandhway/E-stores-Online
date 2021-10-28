@@ -49,6 +49,7 @@
 
 <script>
 import {createStore} from '@/services/store.js'
+import {showMe,modifyUser} from '@/services/user'
 export default {
   name: "StoreRegistration",
   data() {
@@ -56,18 +57,31 @@ export default {
       storeDetail: {
           name:'',
           category:'',
-          address:''
-      }
+          address:'',
+          userId:''
+      },
+      user: {
+        storeId: ""
+    }
     }
   },
   methods:{
       createStore(){
+        showMe().then(data=>{
+          this.storeDetail.userId = data.user.userId
           createStore(this.storeDetail).then(data=>{
+            this.user.storeId = data.store._id
+            modifyUser(this.storeDetail.userId,this.user).then(data=>console.log(data))
             this.storeDetail.name=''
             this.storeDetail.category=''
             this.storeDetail.address=''
+            this.storeDetail.userId=''
             console.log(data)
           })
+          console.log(data)
+          
+          })
+          
           .catch(error=>error)
       }
   }

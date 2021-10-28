@@ -27,6 +27,10 @@ role:{
     type:String,
     enum:['admin','user','customer'],
     default: 'customer'
+},
+storeId:{
+    type:String,
+    default: '',
 }
 });
 

@@ -5,8 +5,8 @@
     <router-view></router-view>
    </div>
 
-  <div v-if="this.$store.state.auth.role === 'admin' && this.$store.getters.isAuthenticated"><AdminNav/></div>
-   <div v-if="this.$store.state.auth.role === 'user' && this.$store.getters.isAuthenticated"><AdminNav/></div>
+  <div v-if="(this.$store.state.auth.role === 'admin' || this.$store.state.auth.role === 'user') && this.$store.getters.isAuthenticated"><AdminNav/></div>
+   <!-- <div v-if="this.$store.state.auth.role === 'user' && this.$store.getters.isAuthenticated"><AdminNav/></div> -->
    
    </div>
 

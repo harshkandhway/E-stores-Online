@@ -1,5 +1,5 @@
 <template>
- <div v-if="this.$store.state.auth.role === 'admin' || this.$store.getters.isAuthenticated">
+ <div v-if="this.$store.state.auth.role === 'admin' || 'user' || this.$store.getters.isAuthenticated">
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
@@ -11,7 +11,7 @@
         dense
         nav
       >
-        <v-list-item to='/storemanage'>
+        <v-list-item to='/storemanage' v-if="this.$store.state.auth.role === 'admin'">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>
           </v-list-item-icon>
@@ -20,12 +20,30 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item to='/requestedstore'>
+        <v-list-item to='/storemanage' v-if="this.$store.state.auth.role === 'user'">
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Modify Product</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to='/requestedstore' v-if="this.$store.state.auth.role === 'admin'">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Requested Stores</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to='/requestedstore' v-if="this.$store.state.auth.role === 'user'">
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Add Stores</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

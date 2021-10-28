@@ -35,7 +35,26 @@ const getSingleUser = async (req, res) => {
 
 const showCurrentUser = async (req, res) => {
     res.status(200).json({ user: req.user });
-};
+}
+
+const updateUser = async (req,res)=>{
+    try{
+        const {userID} = req.params
+        // console.log(req.body);
+        // console.log(storeID);
+        const user = await User.findOneAndUpdate({_id:userID},req.body,{
+            new: true,
+            runValidators: true,
+          })
+        if(!user){
+            return res.status(404).json({msg:`No user with id: ${userID}`})
+        }
+        res.status(200).json({user})
+    }
+    catch(error){
+        res.status(500).json({msg:error})
+    }
+}
 
 // const updateUser = async (req, res) => {
     // try{
@@ -78,5 +97,6 @@ const showCurrentUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     getSingleUser,
-    showCurrentUser
+    showCurrentUser,
+    updateUser
 }
