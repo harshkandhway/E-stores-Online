@@ -9,6 +9,7 @@ import AppProduct from '@/components/AppProduct'
 import ProductDetail from '@/components/ProductDetail'
 // import PageNotFound from '@/components/PageNotFound';
 import StoreManagement from '@/components/AdminDashboard/StoreManagement'
+import StoreForm from '@/components/AdminDashboard/StoreForm'
 import ProductManagement from '@/components/AdminDashboard/ProductManagement'
 const router = new Router({
     mode: 'history',
@@ -60,6 +61,11 @@ const router = new Router({
         {    name: 'StoreManagement',
             path: '/storemanage',
             component: StoreManagement,
+        },
+        {    name: 'StoreForm',
+            path: '/storeform',
+            component: StoreForm,
+            props: true
         },
         {
             name: 'ProductManagement',

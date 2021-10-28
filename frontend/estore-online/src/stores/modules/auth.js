@@ -43,13 +43,14 @@ const auth={
         isAuthenticated(state){
             return !!state.email
         }
-        
     },
     actions:{
         login(context,credentials){
             return login(credentials)
                 .then(data=>{
-                    const{user}=data
+                    const{ user } = data
+                    // console.log("hello",data)
+                    console.log(user)
                     // Vue.$cookies.set(KEY_TOKEN,token);
                     localStorage.setItem(KEY_EMAIL, user.email);
                     localStorage.setItem(KEY_NAME, user.name);

@@ -26,78 +26,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="product-design">
-                        <div class="img">
-                            <img src="https://i0.wp.com/www.dominosoffer.co.in/wp-content/uploads/2020/07/Dominos-Farm-House-Pizza.jpg?fit=800%2C450&ssl=1">
-                        </div>
-                        <div class="wishlist">
-                            <v-btn
-                                class="mx-2"
-                                fab
-                                dark
-                                small
-                                color="pink"
-                                >
-                                <v-icon dark>
-                                    mdi-heart
-                                </v-icon>
-                                </v-btn>
-                        </div>
-                        <div class="product-details">
-                            <div class="name-price">
-                                <h5 class="m-small" >
-                                    Farm House
-                                </h5>
-                                <h6 class="m-small">
-                                    Rs. 345
-                                </h6>
-                            </div>
-                            <div> 
-                            <v-btn
-                                    elevation="2"
-                                    class="ma-4"
-                                >
-                                Add to cart
-                                </v-btn>
-                            </div>
-                        </div>
-        </div>-->
-        <!-- <div class="product-design">
-                    <div class="img">
-                        <img src="https://i0.wp.com/www.dominosoffer.co.in/wp-content/uploads/2020/07/Dominos-Farm-House-Pizza.jpg?fit=800%2C450&ssl=1">
-                    </div>
-                    <div class="wishlist">
-                        <v-btn
-                            class="mx-2"
-                            fab
-                            dark
-                            small
-                            color="pink"
-                            >
-                            <v-icon dark>
-                                mdi-heart
-                            </v-icon>
-                            </v-btn>
-                    </div>
-                     <div class="product-details">
-                         <div class="name-price">
-                            <h5 class="m-small" >
-                                Farm House
-                            </h5>
-                             <h6 class="m-small">
-                                Rs. 345
-                            </h6>
-                         </div>
-                         <div> 
-                           <v-btn
-                                elevation="2"
-                                class="ma-4"
-                            >
-                              Add to cart
-                            </v-btn>
-                        </div>
-                    </div>
-        </div>-->
       </div>
     </div>
     <Footer />
@@ -137,7 +65,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .main-container {
   width: 90%;
   margin: 0 auto;

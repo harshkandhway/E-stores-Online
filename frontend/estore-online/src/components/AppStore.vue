@@ -9,6 +9,19 @@
                  <div class="store-img">
                      <img src="https://media-cdn.tripadvisor.com/media/photo-s/09/4e/41/1b/domino-s-pizza-brakpan.jpg">
                  </div>
+               <div class="store-information">
+                    <div class="store-name">
+                        <h4>{{store.name}}</h4>
+                    </div>
+                    <div class="modify-store-btn" v-if="role==='admin'">
+                         <v-btn
+                                elevation="2"
+                                class="ma-4"
+                            >
+                             Modify Store
+                            </v-btn>
+                    </div>
+                 </div>
               </div>
           </div>
       </div>
@@ -39,8 +52,18 @@ export default{
                     });
         }
     },
+    computed:{
+      isAuthenticated(){
+          return this.$store.getters.isAuthenticated;
+      },
+      role(){
+          return this.$store.state.auth.role
+      }
+  },
     created(){
+        
         store().then(data=>{
+            // loader.hide()
             this.stores = data.store;
             console.log("is auth", this.$store.getters.isAuthenticated);
             // console.log(this.stores)
@@ -75,7 +98,7 @@ export default{
     flex-basis:10%;
     width: 100%;
     border-radius:6px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
     border:none;
     outline:0;
     padding:0;
@@ -91,13 +114,24 @@ export default{
 .store-img{
     width:350px;
     height:350px;
-    border-radius: 15px;
+    border-radius: 15px 15px 0 0;
 }
 .store-img img{
     width:100%;
     height:100%;
     padding: 0;
-    border-radius: 15px;
+    border-radius: 15px 15px 0 0;
+}
+.store-information{
+    width:350px;
+    border:1px solid grey;
+    height:auto;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0px 0px 15px 15px;
+}
+.store-name{
+    margin:20px 12px;
 }
 @media screen and (max-width:1400px)
 {
@@ -110,11 +144,20 @@ export default{
 @media screen and (max-width:500px)
 {
     .store-img{
-        width:200px;
-        height:200px;
+        width:250px;
+        height:250px;
     }
     .small-screen{
         font-size:25px;
+    }
+    .store-information{
+        width:250px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .store-name{
+        margin-bottom:0px;
     }
 }
 </style>

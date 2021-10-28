@@ -25,7 +25,7 @@
             <v-icon>mdi-format-list-checks</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Modify Store</v-list-item-title>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -64,7 +64,7 @@
       src=""
       prominent
       absolute
-      :height="$route.path==='/'?'450':'170'"
+      :height="$route.path==='/storemanage/product'?'450':'170'"
     >
       <template v-slot:img="{ props }">
         <v-img
