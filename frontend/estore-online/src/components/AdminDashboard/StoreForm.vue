@@ -97,19 +97,19 @@ export default{
     },
     methods:{
         removeProduct(productId){
-            let loader = this.$loading.show({loader:'dots'})
+            // let loader = this.$loading.show({loader:'dots'})
             deleteProduct(this.storeId,productId)
             .then(data=>{
-                loader.hide()
+                // loader.hide()
                 this.store.products = data.storeNew.products
                 console.log(data)})
             .catch(error=>error)
         },
         modifyStore(){
             console.log(this.store)
-            let loader = this.$loading.show({loader:'dots'})
+            // let loader = this.$loading.show({loader:'dots'})
             modifyStore(this.storeId,this.store).then(data=>{
-                loader.hide()
+                // loader.hide()
                 this.store=data.store})
             .catch(error=>error)
             }
@@ -117,10 +117,10 @@ export default{
     },
     
     created(){
-        let loader = this.$loading.show({loader:'dots'})
+        // let loader = this.$loading.show({loader:'dots'})
         getSingleStore(this.storeId || this.$store.state.auth.storeId)
         .then(data=>{
-            loader.hide()
+            // loader.hide()
             this.store=data.store
             console.log(this.store)})
         .catch(error=>error)

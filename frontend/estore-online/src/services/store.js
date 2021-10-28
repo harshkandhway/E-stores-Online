@@ -14,10 +14,18 @@ function store() {
         .then(res => {
             loader.hide()
             return res.data;
-        }).catch(error => error)
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
 }
 
 function getSingleStore(storeId){
+    let loader = Vue.$loading.show({loader:'dots'})
     return axios.get(`/api/v1/stores/${storeId}`, {
         withCredentials: true
     }, {
@@ -27,8 +35,16 @@ function getSingleStore(storeId){
         }
     })
         .then(res => {
+            loader.hide()
             return res.data;
-        }).catch(error => error)
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
 }
 
 function modifyStore(storeId,form) {
@@ -52,7 +68,14 @@ function modifyStore(storeId,form) {
             });
             return res.data
         })
-        .catch(error => error);
+        .catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error});
 
 }
 

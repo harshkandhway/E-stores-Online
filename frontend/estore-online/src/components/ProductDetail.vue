@@ -105,9 +105,12 @@ export default {
   },
   created() {
     singleProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId).then(data => {
+        console.log('storeid',this.$store.state.auth.storeId)
+        console.log('productid',this.$store.state.auth.productId)
+
       this.product = data[0];
-      console.log(this.product);
-    });
+      console.log("single pro",);
+    }).catch(error=>error)
   }
 }
 </script>

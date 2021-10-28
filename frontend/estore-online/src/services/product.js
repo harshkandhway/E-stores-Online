@@ -11,7 +11,14 @@ function products(storeId){
     .then(res=>{
         loader.hide()
         return res.data;
-    }).catch(error=>error)
+    }).catch(error=>{
+        loader.hide()
+        Vue.$toast.open({
+            message: "Failed to fetch data",
+            duration: 3000,
+            type: 'error',
+        });
+        return error})
 }
 
 function singleProduct(storeId,productId){
@@ -24,7 +31,14 @@ function singleProduct(storeId,productId){
     .then(res=>{
         loader.hide()
         return res.data;
-    }).catch(error=>error)
+    }).catch(error=>{
+        loader.hide()
+        Vue.$toast.open({
+            message: "Failed to fetch data",
+            duration: 3000,
+            type: 'error',
+        });
+        return error})
 }
 
 function deleteProduct(storeId,productId) {
@@ -48,7 +62,14 @@ function deleteProduct(storeId,productId) {
             });
             return res.data
         })
-        .catch(error => error);
+        .catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error});
 
 }
 

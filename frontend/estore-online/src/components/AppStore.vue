@@ -13,7 +13,7 @@
                     <div class="store-name">
                         <h4>{{store.name}}</h4>
                     </div>
-                    <div class="modify-store-btn" v-if="role==='admin'">
+                    <div class="modify-store-btn" v-if="role==='user'">
                          <v-btn
                                 elevation="2"
                                 class="ma-4"
@@ -74,7 +74,7 @@ export default{
 }
 </script>
 
-<style scoped>
+<style>
 .store-page{
     width:90%;
     margin:50px auto;
@@ -106,14 +106,14 @@ export default{
     border-radius: 15px;
     /* margin:0 30px 30px 0; */
     margin: 30px 30px;
-    /* margin-top:0;  */
+    width:350px;
+    height:350px;
+    margin-bottom:100px; 
 }
 .store-details:hover{
     box-shadow: 0 16px 30px rgba(0, 0, 0, 0.30), 0 12px 12px rgba(0, 0, 0, 0.27);
 }
 .store-img{
-    width:350px;
-    height:350px;
     border-radius: 15px 15px 0 0;
 }
 .store-img img{

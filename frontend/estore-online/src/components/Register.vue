@@ -7,14 +7,17 @@
             <div class="form-heading">
                 Sign Up
             </div>
-            <form class="form">
+            <form class="form" @submit.prevent='register'>
+                <label for="password">Name</label>
+                <input type="text" name="text" placeholder="Name" class="input-style" v-model="formRegister.name">
                 <label for="Email">Email</label>
-                <input type="email" name="email" placeholder="Email" class="input-style">
+                <input type="email" name="email" placeholder="Email" class="input-style" v-model="formRegister.email">
                 <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Password" class="input-style">
+                <input type="password" name="password" placeholder="Password" class="input-style" v-model="formRegister.password">
                 <label for="password">Confirm Password</label>
-                <input type="password" name="password" placeholder="Confirm Password" class="input-style">
+                <input type="password" name="password" placeholder="Password" class="input-style" v-model="confirmPass">
                 <input type="submit" value="Sign Up" class="submit">
+                
             </form>
         </div>
     </div>
@@ -22,7 +25,38 @@
 
 <script>
 export default{
-    name: 'Register'
+    name: 'Register',
+    data() {
+    return {
+      formRegister: {
+        name: '',
+        email: "",
+        password: ""
+      },
+      confirmPass: ''
+    };
+  },
+  methods:{
+      register(){
+          if(this.formRegister.password!=this.confirmPass){
+              this.$toast.open({
+        message: "Password does not match",
+        duration: 3000,
+        type: 'info',
+      })
+              return
+          }
+          this.$store
+        .dispatch("register", this.formRegister)
+        .then(() => {
+            this.$router.push({ name: "AppStore" });
+        })
+        .catch(error => {
+          console.log(error);
+          console.log("is auth", this.$store.getters.isAuthenticated);
+        });
+      }
+  },
 
 }
 </script>
@@ -30,10 +64,10 @@ export default{
 <style scoped>
 .signup{
     width:400px;
-    height:600px;
+    /* height:600px; */
     margin:40px auto;
     background-color: lightgoldenrodyellow;
-    
+    padding-bottom: 20px;
 }
 .signup-image{
     

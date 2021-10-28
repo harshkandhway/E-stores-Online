@@ -1,5 +1,5 @@
 import {login} from "@/services/login.js"
-import { logout } from "@/services/login";
+import { logout,register } from "@/services/login";
 // import Vue from 'vue';
 // const KEY_TOKEN = 'token';
 const KEY_EMAIL = 'email';
@@ -15,7 +15,7 @@ const auth={
         name: localStorage.getItem( KEY_NAME ) || '',
         role: localStorage.getItem(KEY_ROLE) || '',
         storeId: localStorage.getItem(STORE_ID) || '',
-        productId: localStorage.getItem(STORE_ID) || ''
+        productId: localStorage.getItem(PRODUCT_ID) || ''
     },
     mutations: {
         // setToken( state, token ) {
@@ -41,7 +41,7 @@ const auth={
     },
     getters:{
         isAuthenticated(state){
-            return !!state.email
+            return !!state.role
         }
     },
     actions:{
@@ -61,8 +61,25 @@ const auth={
                     context.commit("setName",user.name);
                     context.commit("setRole",user.role);
                     return user.email;
-                });
-                
+                });   
+        },
+        register(context,credentials){
+            return register(credentials)
+                .then(data=>{
+                    const{ user } = data
+                    // console.log("hello",data)
+                    console.log(user)
+                    // Vue.$cookies.set(KEY_TOKEN,token);
+                    localStorage.setItem(KEY_EMAIL, user.email);
+                    localStorage.setItem(KEY_NAME, user.name);
+                    localStorage.setItem(KEY_ROLE, user.role);
+                    
+                    // context.commit("setToken",token);
+                    context.commit("setEmail",user.email);
+                    context.commit("setName",user.name);
+                    context.commit("setRole",user.role);
+                    return user.email;
+                })
         },
         // storeIdAccess({commit},storeId){
         //     Vue.$cookies.set(STORE_ID, storeId);
@@ -88,10 +105,7 @@ const auth={
           console.log(data);
         })
         .catch(error => error);
-
             // this.$cookies.delete( KEY_TOKEN );
-            
-
             return Promise.resolve();
         }
     }
