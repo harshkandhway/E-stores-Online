@@ -24,6 +24,29 @@ function showMe() {
             return error})
 }
 
+function getSingleUser(userId) {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios.get(`/api/v1/users/${userId}`, {
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization' : Vue.$cookies.get('token')
+        }
+    })
+        .then(res => {
+            loader.hide()
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data of user",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
+}
+
 function modifyUser(userId,form) {
     let loader = Vue.$loading.show({loader:'dots'})
     return axios
@@ -39,7 +62,7 @@ function modifyUser(userId,form) {
         .then(res => {
             loader.hide()
             Vue.$toast.open({
-                message: "Store modified successfully",
+                message: "User modified successfully",
                 duration: 3000,
                 type: 'success',
             });
@@ -56,5 +79,5 @@ function modifyUser(userId,form) {
 }
 
 export{
-    showMe, modifyUser
+    showMe, modifyUser, getSingleUser
 }

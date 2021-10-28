@@ -49,7 +49,7 @@ export default {
           if(this.$store.state.auth.role!='admin')
             this.$router.push({ name: "AppStore" });
           else
-            this.$router.push({ name: "storemanage" });
+            this.$router.push({ name: "StoreManagement" });
         })
         .catch(error => {
           console.log(error);

@@ -93,5 +93,7 @@ modifyStore(storeId){
 </script>
 
 <style scoped>
-
+.modify-store-btn{
+  width: 55%;
+}
 </style>
