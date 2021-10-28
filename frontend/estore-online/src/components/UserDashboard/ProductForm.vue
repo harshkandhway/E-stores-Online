@@ -3,19 +3,22 @@
   <div class="form-design">
     <div class="form-container">
       <div class="store-name">E-Stores Online</div>
+      <div>
+          <v-btn elevation="2" class="ml-2 mb-0" style="background-color:crimson; color:white; " @click="deleteProduct">Delete Product</v-btn>
+        </div>
       <div class="form-heading" style="margin:20px 10px">Add Your Product</div>
       <div>
-        <form>
+        <form @submit.prevent="modifyProduct">
           <div class="name-category">
             <div class="div1" style="margin:0 10px">
-              <label for="text">Product Name</label>
+              <label for="text" >Product Name</label>
 
-              <input type="text" placeholder="Product Name" class="input-style" />
+              <input type="text" placeholder="Product Name" class="input-style" v-model="product.productName"/>
             </div>
             <div class="div2" style="margin:0 10px">
               <label for="text">Product Brand</label>
 
-              <input type="text" placeholder="Product Brand" class="input-style" />
+              <input type="text" placeholder="Product Brand" class="input-style" v-model="product.productBrand"/>
             </div>
           </div>
           <div class="street-address" style="margin:0 10px">
@@ -23,12 +26,12 @@
               <div>
                 <label for="text">Price</label>
 
-                <input type="text" placeholder="Price" class="input-style" />
+                <input type="text" placeholder="Price" class="input-style" v-model="product.price"/>
               </div>
               <div>
                 <label for="text">Size</label>
 
-                <input type="text" placeholder="Size" class="input-style" />
+                <input type="text" placeholder="Size" class="input-style" v-model="product.size"/>
               </div>
             </div>
             <form class="product-detail" @submit.prevent="AddDetailToArray">
@@ -38,22 +41,24 @@
                   type="text"
                   placeholder="Add Detail"
                   class="input-style"
-                  v-model="tempdetail"
                   required
+                  v-model="tempdetail"
                 />
               </div>
               <div>
                 <input type="submit" value="Add" class="addbutton" />
-                  <v-icon left> mdiDelete </v-icon>
+                  <!-- <v-icon left> mdiDelete </v-icon> -->
                
               </div>
             </form>
             <div class="show-details">
-              <div class="show-detail-div" v-for="detail in details" :key="detail">{{detail}}</div>
+              <div class="show-detail-div" v-for="(detail,index) in product.productDetails" :key="index">{{detail}}
+                <b-icon icon="trash-fill" scale="1" variant="info" shift-h=2 style="cursor:pointer" @click="deleteDetail(index)"></b-icon>
+              </div>
             </div>
             <div>
-              <input type="submit" value="Submit" class="submit" />
-              <!-- <b-icon icon="x-circle" scale="2" variant="danger"></b-icon> -->
+              <input type="submit" value="Modify Now" class="submit" />
+              
             </div>
           </div>
         </form>
@@ -69,18 +74,41 @@
 </template>
 
 <script>
+import {singleProduct,deleteProduct,modifyProduct} from '@/services/product'
 export default {
   name: "ProductForm",
   data: () => ({
     details: ["Waterproof", "Washable", "Comfortable"],
-    tempdetail: ""
+    tempdetail: "",
+    product:{}
   }),
   methods: {
     AddDetailToArray() {
       console.log(this.tempdetail);
-      this.details.push(this.tempdetail);
+      this.product.productDetails.push(this.tempdetail);
       this.tempdetail = "";
-    }
+    },
+    deleteDetail(index){
+      this.product.productDetails.splice(index, 1);
+  },
+  deleteProduct(){
+    deleteProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId).then(()=>{
+        this.$router.push({
+            name:'ProductManagement'
+        })
+    })
+  },
+  modifyProduct(){
+      modifyProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId,this.product).
+      then(data=>console.log(data))
+  }
+  },
+  created(){
+       singleProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId).then(data => {
+
+      this.product = data[0];
+      console.log(this.product)
+    }).catch(error=>error)
   }
 };
 </script>
@@ -171,9 +199,11 @@ form label {
   max-width: 300px;
   word-break: break-word;
   margin: 10px 12px 0px 0px;
-  border-radius: 2px;
+  border-radius: 15px;
   border: 1px solid grey;
   padding: 6px;
+  position: relative;
+  background: lightgoldenrodyellow
 }
 @media screen and (max-width: 1200px) {
   .form-design {
