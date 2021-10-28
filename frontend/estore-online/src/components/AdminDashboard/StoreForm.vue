@@ -11,6 +11,7 @@
         </div>
         <div>
           <v-btn elevation="2" class="mt-4 mb-4" style="background-color:crimson; color:white; " @click="deleteStore">Delete store</v-btn>
+             <!-- <v-icon left>{{}}</v-icon> -->
         </div>
         <div class="form-heading">Update Store</div>
         <!-- <div class="form-heading" v-if="!this.update">

@@ -11,8 +11,10 @@ import StoreRegistration from '@/components/StoreRegistration'
 // import PageNotFound from '@/components/PageNotFound';
 import StoreManagement from '@/components/AdminDashboard/StoreManagement'
 import StoreForm from '@/components/AdminDashboard/StoreForm'
-import ProductManagement from '@/components/AdminDashboard/ProductManagement'
+import ProductManagement from '@/components/UserDashboard/ProductManagement'
 import RequestedStore from '@/components/AdminDashboard/RequestedStore'
+import ProductForm from '@/components/UserDashboard/ProductForm'
+
 const router = new Router({
     mode: 'history',
     routes: [
@@ -83,8 +85,13 @@ const router = new Router({
 
         {
             name: 'ProductManagement',
-            path: '/storemanage/productmanage',
+            path: '/productmanage',
             component: ProductManagement,
+            props: true
+        },
+        {    name: 'ProductForm',
+            path: '/productform',
+            component: ProductForm,
             props: true
         },
     ]

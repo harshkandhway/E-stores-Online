@@ -20,7 +20,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item to='/storemanage' v-if="this.$store.state.auth.role === 'user'">
+        <v-list-item to='/productmanage' v-if="this.$store.state.auth.role === 'user'">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>
           </v-list-item-icon>
