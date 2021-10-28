@@ -7,7 +7,18 @@ const path = require('path')
 const getAllStores = async (req,res)=>{
     // console.log(Store.schema)
     try{
-        const store = await Store.find({})
+        const store = await Store.find({registered:true})
+        res.status(200).json({store})
+    }
+    catch(error){
+        res.status(500).json({msg: error.message})
+    } 
+}
+
+const getAllRequestedStores = async (req,res)=>{
+    // console.log(Store.schema)
+    try{
+        const store = await Store.find({registered:false})
         res.status(200).json({store})
     }
     catch(error){
@@ -127,5 +138,5 @@ const uploadImage = async(req,res)=>{
 }
 
 module.exports = { 
-    getAllStores,createStores, getStore , updateStore, deleteStore,uploadImage
+    getAllStores,getAllRequestedStores,createStores, getStore , updateStore, deleteStore,uploadImage
 }

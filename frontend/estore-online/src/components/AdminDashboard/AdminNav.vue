@@ -20,6 +20,15 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item to='/requestedstore'>
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Requested Stores</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item @click="logout()">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>

@@ -7,10 +7,12 @@ import Register from '@/components/Register'
 import AppStore from '@/components/AppStore'
 import AppProduct from '@/components/AppProduct'
 import ProductDetail from '@/components/ProductDetail'
+import StoreRegistration from '@/components/StoreRegistration'
 // import PageNotFound from '@/components/PageNotFound';
 import StoreManagement from '@/components/AdminDashboard/StoreManagement'
 import StoreForm from '@/components/AdminDashboard/StoreForm'
 import ProductManagement from '@/components/AdminDashboard/ProductManagement'
+import RequestedStore from '@/components/AdminDashboard/RequestedStore'
 const router = new Router({
     mode: 'history',
     routes: [
@@ -52,6 +54,12 @@ const router = new Router({
             component: ProductDetail,
             props: true
         },
+        {
+            name: 'StoreRegistration',
+            path: '/registerstore',
+            component: StoreRegistration,
+            props: true
+        },
         // {
         //     name: 'PageNotFound',
         //     path: '*',
@@ -67,6 +75,12 @@ const router = new Router({
             component: StoreForm,
             props: true
         },
+        {    name: 'RequestedStore',
+            path: '/requestedstore',
+            component: RequestedStore,
+            props: true
+        },
+
         {
             name: 'ProductManagement',
             path: '/storemanage/productmanage',

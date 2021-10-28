@@ -25,8 +25,8 @@ password:{
 },
 role:{
     type:String,
-    enum:['admin','user'],
-    default: 'user'
+    enum:['admin','user','customer'],
+    default: 'customer'
 }
 });
 

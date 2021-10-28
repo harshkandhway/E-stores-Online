@@ -46,7 +46,10 @@ export default {
           this.$store
         .dispatch("login", this.formLogin)
         .then(() => {
+          if(this.$store.state.auth.role!='admin')
             this.$router.push({ name: "AppStore" });
+          else
+            this.$router.push({ name: "storemanage" });
         })
         .catch(error => {
           console.log(error);

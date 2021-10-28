@@ -24,6 +24,29 @@ function store() {
             return error})
 }
 
+function reqStore() {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios.get(`/api/v1/stores/requests`, {
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization' : Vue.$cookies.get('token')
+        }
+    })
+        .then(res => {
+            loader.hide()
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
+}
+
 function getSingleStore(storeId){
     let loader = Vue.$loading.show({loader:'dots'})
     return axios.get(`/api/v1/stores/${storeId}`, {
@@ -48,7 +71,7 @@ function getSingleStore(storeId){
 }
 
 function modifyStore(storeId,form) {
-    let loader = this.$loading.show({loader:'dots'})
+    let loader = Vue.$loading.show({loader:'dots'})
     return axios
         .patch(
             `/api/v1/stores/${storeId}`, form, {
@@ -75,10 +98,32 @@ function modifyStore(storeId,form) {
                 duration: 3000,
                 type: 'error',
             });
-            return error});
+        return error});
+}
 
+function createStore(form) {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios.post(`/api/v1/stores`, form,{
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization' : Vue.$cookies.get('token')
+        }
+    })
+        .then(res => {
+            loader.hide()
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
 }
 
 export {
-    store,getSingleStore,modifyStore
+    store,getSingleStore,modifyStore,createStore,reqStore
 }
