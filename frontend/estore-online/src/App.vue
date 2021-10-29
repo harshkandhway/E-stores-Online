@@ -30,6 +30,12 @@ import AppNavbar from '@/components/AppNavbar'
     font-family: 'Montserrat', sans-serif;
     /* color:#33343b; */
 }
+/* body{ height:100vh; margin:0; }
+
+header{ min-height:50px; background:lightcyan; }
+footer{ min-height:50px; background:PapayaWhip; } */
+
+/* Trick */
 
 .nav-icon{
   display: inline-flex;

@@ -43,6 +43,14 @@ const StoreSchema = new mongoose.Schema({
     userId:{
         type: String,
         default: ''
+    },
+    storeEmail:{
+        type: String,
+        default: ''
+    },
+    storePhone:{
+        type: String,
+        default:''
     }
 })
    

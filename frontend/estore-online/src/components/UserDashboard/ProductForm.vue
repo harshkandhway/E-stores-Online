@@ -1,7 +1,7 @@
 <template>
 <div>
     <div>
-          <v-btn elevation="2" class="ml-10 mt-10" style="background-color:golden-rod; color:white; " @click="goBack">Go back</v-btn>
+          <v-btn elevation="2" class="ml-10 mt-10" style="background-color:goldenrod; color:white;" @click="goBack">Go back</v-btn>
     </div>
   <div class="form-design">
     <div class="form-container">
@@ -104,11 +104,11 @@ export default {
   },
   modifyProduct(){
       modifyProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId,this.product).
-      then(data=>console.log(data))
+      then(data=>{
+        console.log(data)})
   },
   goBack(){
-    this.$router.push({
-                        name: 'ProductManagement',})
+    this.$router.push({ name: 'ProductManagement',})
   }
   },
   created(){

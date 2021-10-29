@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="positon:relative">
     <div class="main-container">
       <div class="product-base">
         <div
@@ -28,14 +28,18 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <AppFooter />
   </div>
 </template>
 
 <script>
 import { products } from "@/services/product";
+import AppFooter from "@/components/AppFooter"
 export default {
   name: "AppProduct",
+  components:{
+    AppFooter
+  },
   props: {
     storeId: String
   },
@@ -66,7 +70,9 @@ export default {
 </script>
 
 <style>
+
 .main-container {
+  /* position: relative; */
   width: 90%;
   margin: 0 auto;
   padding: 10px;
@@ -81,7 +87,7 @@ export default {
 .product-design {
   /* flex-basis: 27%; */
   border-radius: 4px;
-  margin: 30px;
+  margin:  0 20px 150px 20px ;
   position: relative;
   outline: none;
   width: 350px;

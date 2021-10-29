@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {store} from '@/services/store'
+import {store,getSingleStore} from '@/services/store'
 export default{
     name: 'AppStore',
     data(){
@@ -41,15 +41,25 @@ export default{
         seeProduct(products,storeId){
             // console.log(products);
             // console.log(storeId);
-           this.$store
+            getSingleStore(storeId).then(data=>{
+                this.$store
+        .commit('setAddress', data.store.address)
+        this.$store
+        .commit('setStoreEmail', data.store.storeEmail)
+            this.$store
         .commit('setStoreId', storeId)
-        console.log('vuex store',this.$store.state.auth.storeId)
-            this.$router.push({
+         this.$router.push({
                         name: 'AppProduct',
                         params: {
                             storeId: storeId
                         }
                     });
+        })
+
+           
+        
+        // console.log('vuex store',this.$store.state.auth.storeId)
+           
         }
     },
     computed:{

@@ -13,7 +13,6 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-
 const getSingleUser = async (req, res) => {
     try {
         const { id: userID } = req.params

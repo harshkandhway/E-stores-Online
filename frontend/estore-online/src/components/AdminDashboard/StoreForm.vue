@@ -82,7 +82,7 @@
       <div class="product-base">
         <div
           class="product-design"
-          style="margin:0 0 100px 0 "
+          style="margin:0 20px 150px 20px "
           v-for="(product,index) in store.products"
           :key="index"
         >

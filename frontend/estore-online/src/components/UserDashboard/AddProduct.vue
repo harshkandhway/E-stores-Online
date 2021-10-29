@@ -55,7 +55,7 @@
               </div>
             </div>
             <div>
-              <input type="submit" value="Modify Now" class="submit" />
+              <input type="submit" value="Add Now" class="submit" />
               
             </div>
           </div>
@@ -104,10 +104,17 @@ export default {
   createProduct(){
       createProduct(this.storeId,this.product).
       then(data=>{
-        this.product = {}
+        this.product.productBrand='',
+                this.product.productName="",
+                this.product.price= "Rs. ",
+                this.product.size= "",
+                this.product.imageUrl= "",
+                this.product.productDetails= []
+                this.tempdetail = ""
+           
         console.log(data)
       })
-  },
+  }
   },
   created(){
 showMe().then(data=>{

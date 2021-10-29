@@ -5,17 +5,21 @@ import { logout,register } from "@/services/login";
 const KEY_EMAIL = 'email';
 const KEY_NAME = 'name';
 const KEY_ROLE = 'role';
-const STORE_ID = 'storeId'
-const PRODUCT_ID = 'productId'
+const STORE_ID = 'storeId';
+const PRODUCT_ID = 'productId';
+const ADDRESS = 'address';
+const STORE_EMAIL = 'storeEmail';
 
 const auth={
     state:{
         // token: Vue.$cookies.get( KEY_TOKEN ) || '',
         email: localStorage.getItem( KEY_EMAIL ) || '',
-        name: localStorage.getItem( KEY_NAME ) || '',
+        name: localStorage.getItem( KEY_NAME ) || '', 
         role: localStorage.getItem(KEY_ROLE) || '',
         storeId: localStorage.getItem(STORE_ID) || '',
-        productId: localStorage.getItem(PRODUCT_ID) || ''
+        productId: localStorage.getItem(PRODUCT_ID) || '',
+        address: localStorage.getItem(ADDRESS) || '',
+        storeEmail: localStorage.getItem(STORE_EMAIL) || ''
     },
     mutations: {
         // setToken( state, token ) {
@@ -37,7 +41,16 @@ const auth={
         setProductId(state, productId){
             state.productId = productId
             localStorage.setItem(PRODUCT_ID, productId);
+        },
+        setAddress(state, address){
+            state.address = address
+            localStorage.setItem(ADDRESS, address);
+        },
+        setStoreEmail(state, storeEmail){
+            state.email = storeEmail
+            localStorage.setItem(STORE_EMAIL, storeEmail);
         }
+
     },
     getters:{
         isAuthenticated(state){

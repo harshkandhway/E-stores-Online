@@ -58,7 +58,8 @@ export default {
           name:'',
           category:'',
           address:'',
-          userId:''
+          userId:'',
+          storeEmail:''
       },
       user: {
         storeId: ""
@@ -69,6 +70,7 @@ export default {
       createStore(){
         showMe().then(data=>{
           this.storeDetail.userId = data.user.userId
+          this.storeDetail.storeEmail = data.user.email
           createStore(this.storeDetail).then(data=>{
             this.user.storeId = data.store._id
             modifyUser(this.storeDetail.userId,this.user).then(data=>console.log(data))
