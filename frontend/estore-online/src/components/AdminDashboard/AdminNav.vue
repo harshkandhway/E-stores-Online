@@ -38,12 +38,12 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item to='/requestedstore' v-if="this.$store.state.auth.role === 'user'">
+        <v-list-item to='/addproduct' v-if="this.$store.state.auth.role === 'user'">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Add Stores</v-list-item-title>
+            <v-list-item-title>Add Product</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

@@ -14,6 +14,8 @@ import StoreForm from '@/components/AdminDashboard/StoreForm'
 import ProductManagement from '@/components/UserDashboard/ProductManagement'
 import RequestedStore from '@/components/AdminDashboard/RequestedStore'
 import ProductForm from '@/components/UserDashboard/ProductForm'
+import AddProduct from '@/components/UserDashboard/AddProduct'
+
 
 const router = new Router({
     mode: 'history',
@@ -94,6 +96,12 @@ const router = new Router({
             component: ProductForm,
             props: true
         },
+        {
+            name: 'AddProduct',
+            path: '/addproduct',
+            component: AddProduct,
+            props: true
+        }
     ]
 })
 

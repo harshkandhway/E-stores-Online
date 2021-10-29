@@ -103,6 +103,34 @@ function modifyProduct(storeId,productId,form) {
             return error});
 }
 
+function createProduct(storeId,form) {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios.post(`/api/v1/stores/${storeId}/products`, form,{
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization' : Vue.$cookies.get('token')
+        }
+    })
+        .then(res => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Your product has been added successfully",
+                duration: 3000,
+                type: 'success',
+            });
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error})
+}
+
 export{
-    products,singleProduct,deleteProduct,modifyProduct
+    products,singleProduct,deleteProduct,modifyProduct,createProduct
 }

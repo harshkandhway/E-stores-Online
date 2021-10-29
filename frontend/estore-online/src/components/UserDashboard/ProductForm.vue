@@ -1,5 +1,8 @@
 <template>
-
+<div>
+    <div>
+          <v-btn elevation="2" class="ml-10 mt-10" style="background-color:golden-rod; color:white; " @click="goBack">Go back</v-btn>
+    </div>
   <div class="form-design">
     <div class="form-container">
       <div class="store-name">E-Stores Online</div>
@@ -71,6 +74,7 @@
       />
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -101,11 +105,14 @@ export default {
   modifyProduct(){
       modifyProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId,this.product).
       then(data=>console.log(data))
+  },
+  goBack(){
+    this.$router.push({
+                        name: 'ProductManagement',})
   }
   },
   created(){
        singleProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId).then(data => {
-
       this.product = data[0];
       console.log(this.product)
     }).catch(error=>error)
@@ -113,7 +120,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .form-design {
   width: 60%;
   border: 1px solid grey;
