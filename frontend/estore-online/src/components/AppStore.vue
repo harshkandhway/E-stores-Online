@@ -4,10 +4,10 @@
           <h1 class="small-screen">Stores</h1>
           <hr/>
           <div class="store-class">
-              <div class="store-details" v-for="(store,index) in stores" :key="index" @click="seeProduct(store.products,store._id)">
+              <div class="store-details" v-for="(store,index) in stores" :key="index" @click="seeProduct(store.products,store._id,store.imageUrl)">
                   <!--  -->
                  <div class="store-img">
-                     <img src="https://media-cdn.tripadvisor.com/media/photo-s/09/4e/41/1b/domino-s-pizza-brakpan.jpg">
+                     <img :src="store.imageUrl">
                  </div>
                <div class="store-information">
                     <div class="store-name">
@@ -38,7 +38,7 @@ export default{
         }
     },
     methods:{
-        seeProduct(products,storeId){
+        seeProduct(products,storeId, storeImage){
             // console.log(products);
             // console.log(storeId);
             getSingleStore(storeId).then(data=>{
@@ -48,6 +48,8 @@ export default{
         .commit('setStoreEmail', data.store.storeEmail)
             this.$store
         .commit('setStoreId', storeId)
+         this.$store
+        .commit('setStoreImage', storeImage)
          this.$router.push({
                         name: 'AppProduct',
                         params: {
@@ -128,6 +130,8 @@ export default{
 }
 .store-img{
     border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
 }
 .store-img img{
     width:100%;

@@ -59,9 +59,21 @@
                 <b-icon icon="trash-fill" scale="1" variant="info" shift-h=2 style="cursor:pointer" @click="deleteDetail(index)"></b-icon>
               </div>
             </div>
+            <br>
+            <div style="display:flex; flex-direction:column">
+            <span>Upload an image:</span>
+            <input type="file" accept="image/*" @change="productImage($event)" style="margin-top:15px"
+                                     id="file-input"><span>Current Image: {{product.imageUrl}}</span>
+                                     </div>
+                                     <br>
+           <v-btn
+            elevation="2"
+            class="mt-0 mb-0"
+            style="background-color:goldenrod; color:white; width:fit-content"
+            @click="onUpload"
+          >Upload Image</v-btn>
             <div>
               <input type="submit" value="Modify Now" class="submit" />
-              
             </div>
           </div>
         </form>
@@ -78,13 +90,15 @@
 </template>
 
 <script>
-import {singleProduct,deleteProduct,modifyProduct} from '@/services/product'
+import {singleProduct,deleteProduct,modifyProduct,productImage} from '@/services/product'
 export default {
   name: "ProductForm",
   data: () => ({
     details: ["Waterproof", "Washable", "Comfortable"],
     tempdetail: "",
-    product:{}
+    product:{imageUrl: ""},
+    selectedImage:null
+    
   }),
   methods: {
     AddDetailToArray() {
@@ -107,6 +121,20 @@ export default {
       then(data=>{
         console.log(data)})
   },
+
+  productImage(event){
+    this.selectedImage = event.target.files[0]
+      console.log(this.selectedImage)
+  },
+
+  onUpload(){
+    const formData = new FormData()
+      formData.append('image', this.selectedImage)
+    productImage(this.$store.state.auth.storeId,this.$store.state.auth.productId,formData)
+    .then((data)=>{
+        this.product.imageUrl = data.image})
+  },
+
   goBack(){
     this.$router.push({ name: 'ProductManagement',})
   }

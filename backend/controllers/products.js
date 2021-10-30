@@ -127,7 +127,7 @@ const uploadImage = async(req,res)=>{
 
     const imagePath = path.join(__dirname,`../public/uploads/${store._id}/${productId}/` + `${productImage.name}`);
     await productImage.mv(imagePath);
-    res.status(200).json({image: `/uploads/${productImage.name}`});
+    res.status(200).json({image: `/uploads/${store._id}/${productId}/${productImage.name}`});
     // console.log(req.files);
     // res.send('upload image')
 }

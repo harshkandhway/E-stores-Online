@@ -40,14 +40,14 @@ export default{
     align-items: center;
     /* margin:auto; */
     /* clear: both; */
-    position: absolute;
+    position: relative;
     width: 100%;
     /* top: 10px; */
     /* height: 200px; */
     /* margin-top: 75px; */
     /* bottom: 0; */
     /* flex-grow: 1; */
-    bottom: 0;
+    /* bottom: 0; */
 }
 
 .footer span{

@@ -56,7 +56,7 @@ function deleteProduct(storeId,productId) {
         .then(res => {
         loader.hide()
             Vue.$toast.open({
-                message: "Store modified successfully",
+                message: "Product deleted",
                 duration: 3000,
                 type: 'success',
             });
@@ -87,7 +87,7 @@ function modifyProduct(storeId,productId,form) {
         .then(res => {
         loader.hide()
             Vue.$toast.open({
-                message: "Store modified successfully",
+                message: "Product modified successfully",
                 duration: 3000,
                 type: 'success',
             });
@@ -131,6 +131,38 @@ function createProduct(storeId,form) {
             return error})
 }
 
+function productImage(storeId,productId,image) {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios
+        .post(
+            `/api/v1/stores/${storeId}/products/${productId}/uploadImage/`,image, {
+                withCredentials: true
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        },
+        )
+        .then(res => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Product Image Added Successfully",
+                duration: 3000,
+                type: 'success',
+            });
+            return res.data
+        })
+        .catch(() => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data 1111",
+                duration: 3000,
+                type: 'error',
+            });
+        });
+}
+
+
 export{
-    products,singleProduct,deleteProduct,modifyProduct,createProduct
+    products,singleProduct,deleteProduct,modifyProduct,createProduct,productImage
 }

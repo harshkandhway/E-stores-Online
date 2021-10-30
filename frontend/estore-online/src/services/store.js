@@ -147,6 +147,37 @@ function createStore(form) {
             return error})
 }
 
+function storeImage(storeId,image) {
+    let loader = Vue.$loading.show({loader:'dots'})
+    return axios
+        .post(
+            `/api/v1/stores/${storeId}/uploadImage`,image, {
+                withCredentials: true
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        },
+        )
+        .then(res => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Store modified successfully",
+                duration: 3000,
+                type: 'success',
+            });
+            return res.data
+        })
+        .catch(() => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data 1111",
+                duration: 3000,
+                type: 'error',
+            });
+        });
+}
+
 export {
-    store,getSingleStore,deleteStore,modifyStore,createStore,reqStore
+    store,getSingleStore,deleteStore,modifyStore,createStore,reqStore,storeImage
 }

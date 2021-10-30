@@ -10,8 +10,13 @@
           <span>Store id : {{this.form.storeId}}</span>
         </div>
         <div>
-          <v-btn elevation="2" class="mt-4 mb-4" style="background-color:crimson; color:white; " @click="deleteStore">Delete store</v-btn>
-             <!-- <v-icon left>{{}}</v-icon> -->
+          <v-btn
+            elevation="2"
+            class="mt-4 mb-4"
+            style="background-color:crimson; color:white; "
+            @click="deleteStore"
+          >Delete store</v-btn>
+          <!-- <v-icon left>{{}}</v-icon> -->
         </div>
         <div class="form-heading">Update Store</div>
         <!-- <div class="form-heading" v-if="!this.update">
@@ -68,6 +73,17 @@
           />
           <v-select :items="items" label="Role" solo v-model="form.role"></v-select>
 
+
+          <input type="file" accept="image/*" @change="storeImage($event)" 
+                                     id="file-input">
+                                     <br>
+           <v-btn
+            elevation="2"
+            class="mt-2 mb-0"
+            style="background-color:goldenrod; color:white; "
+            @click="onUpload"
+          >Upload Image</v-btn>
+
           <input type="submit" value="Submit" class="submit" />
         </form>
       </div>
@@ -111,7 +127,7 @@
 
 <script>
 import { deleteProduct } from "@/services/product";
-import { getSingleStore, modifyStore, deleteStore } from "@/services/store";
+import { getSingleStore, modifyStore, deleteStore,storeImage } from "@/services/store";
 import { modifyUser, getSingleUser } from "@/services/user";
 // import Vue from 'vue'
 export default {
@@ -123,15 +139,16 @@ export default {
   },
   data() {
     return {
-      store: {},
+      store: {imageUrl: ""},
       items: ["user", "customer", "admin"],
       form: {
         name: "",
         email: "",
         role: "",
-        storeId: ""
+        storeId: "",
       },
-      userId: ""
+      userId: "",
+      selectedImage: null,
     };
   },
   methods: {
@@ -151,7 +168,7 @@ export default {
         this.form.storeId = this.store._id;
       }
       // let loader = this.$loading.show({loader:'dots'})
-      modifyStore(this.storeId, this.store)
+      modifyStore(this.$store.state.auth.storeId, this.store)
         .then(data => {
           this.store = data.store;
           modifyUser(this.store.userId, this.form).then(data =>
@@ -164,12 +181,28 @@ export default {
 
         .catch(error => error);
     },
-    deleteStore(){
-        deleteStore(this.store._id).then(data=>{
-            this.$router.push({
-                name:'StoreManagement'
-            })
-            console.log(data)})
+    deleteStore() {
+      deleteStore(this.store._id).then(data => {
+        this.$router.push({
+          name: "StoreManagement"
+        });
+        console.log(data);
+      });
+    },
+    storeImage(event){
+      this.selectedImage = event.target.files[0]
+      console.log(this.selectedImage)
+      // let fileReader = new FileReader();
+      // fileReader.append('image',imageFile);
+      // storeImage(this.form.storeId,fileReader).then(data=>console.log(data))
+    },
+
+    onUpload(){
+      const formData = new FormData()
+      formData.append('image', this.selectedImage)
+      storeImage(this.form.storeId,formData).then(data=>{
+        this.store.imageUrl = data.image
+        console.log(this.form.imageUrl)})
     }
   },
 

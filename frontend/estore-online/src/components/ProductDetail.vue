@@ -2,7 +2,7 @@
   <div>
   <div class="main-container">
       <div class="detail-img">
-         <img src="https://assets.ajio.com/medias/sys_master/root/20210610/wa4D/60c10be0f997ddb312c4026b/-1117Wx1400H-460345106-black-OUTFIT2.jpg">
+         <img :src="productImage">
       </div>
         <div class="detail-base">
             <div class="mb-2 class-color class-size">{{product.productBrand}}</div>
@@ -103,6 +103,11 @@ export default {
       product: {}
     }
   },
+  computed:{
+    productImage(){
+      return this.$store.state.auth.productImage;
+    }
+    },
   created() {
     singleProduct(this.$store.state.auth.storeId,this.$store.state.auth.productId).then(data => {
         console.log('storeid',this.$store.state.auth.storeId)

@@ -8,7 +8,7 @@
           :key="index"
         >
           <div class="img">
-            <img src="https://4.imimg.com/data4/RE/BI/ANDROID-41682785/product-500x500.jpeg" />
+            <img :src="product.imageUrl" />
           </div>
           <div class="wishlist">
             <v-btn class="mx-2" fab dark small color="pink">
@@ -38,6 +38,7 @@
 // import AdminNav from '@/components/AdminDashboard/AdminNav'
 import {showMe,getSingleUser} from '@/services/user'
 import { products } from "@/services/product";
+import {getSingleStore} from "@/services/store"
 export default {
   name: "ProductManagement",
   components: {
@@ -49,7 +50,8 @@ export default {
       update: false,
       register: false,
       userId:'',
-      storeId: ''
+      storeId: '',
+      storeImage: ''
     };
   },
   methods: {
@@ -89,6 +91,12 @@ modifyProduct(productId){
       },
       role(){
           return this.$store.state.auth.role
+      },
+      storeImageComputed(){
+        return this.$store.state.auth.storeImage
+      },
+      productImageComputed(){
+        return this.$store.state.auth.productImage
       }
   },
   created() {
@@ -96,10 +104,14 @@ modifyProduct(productId){
       this.userId = data.user.userId
       getSingleUser(this.userId).then(data=>{
         this.storeId = data.user.storeId
-        products(data.user.storeId).then(data=>{
+        getSingleStore(this.storeId).then(data=>{
+          this.$store.commit('setStoreImage', data.store.imageUrl)
+        products(this.storeId).then(data=>{
           this.products = data
           console.log('product dash',this.products)
         })
+        })
+        
 
       })
     })

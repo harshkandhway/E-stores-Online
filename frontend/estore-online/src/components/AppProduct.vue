@@ -1,15 +1,19 @@
 <template>
   <div style="positon:relative">
+    <div class="banner" >
+      <img :src="storeImage">
+      <div class='overlay' style="position:absolute;top:0; background:black; height:100%; width:100%; opacity:0.4" ></div>
+      </div>
     <div class="main-container">
       <div class="product-base">
         <div
           class="product-design"
           v-for="(product,index) in products"
           :key="index"
-          @click="productDetail(product._id)"
+          @click="productDetail(product._id,product.imageUrl)"
         >
           <div class="img">
-            <img src="https://4.imimg.com/data4/RE/BI/ANDROID-41682785/product-500x500.jpeg" />
+            <img :src="product.imageUrl" />
           </div>
           <div class="wishlist">
             <v-btn class="mx-2" fab dark small color="pink">
@@ -44,14 +48,21 @@ export default {
     storeId: String
   },
 
+  computed:{
+    storeImage(){
+      return this.$store.state.auth.storeImage;
+    }
+  },
+
   data() {
     return {
       products: []
     };
   },
   methods: {
-    productDetail(productId) {
+    productDetail(productId,productImage) {
       this.$store.commit("setProductId", productId);
+      this.$store.commit('setProductImage',productImage)
       this.$router.push({
                         name: 'ProductDetail',
                         params: {
@@ -70,6 +81,27 @@ export default {
 </script>
 
 <style>
+
+.banner{
+  height: 400px;
+  width: 100%;
+  /* background: chartreuse; */
+  position: relative;
+}
+.banner img{
+  height: 100%;
+  width: 100%;
+}
+
+.banner .after{
+   position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: rgb(143, 5, 5);
+}
 
 .main-container {
   /* position: relative; */
@@ -94,13 +126,15 @@ export default {
   height: 300px;
 }
 .product-design img {
-  width: 350px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 .img {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 .wishlist {
   position: absolute;

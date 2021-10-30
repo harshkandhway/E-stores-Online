@@ -11,13 +11,13 @@
           img-width= 851
           img-height= 315
         >
-          <b-carousel-slide img-src="@/assets/dominos.jpg">
+          <b-carousel-slide img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
           
           </b-carousel-slide>
-          <b-carousel-slide img-src="@/assets/nike.jpg">
+          <b-carousel-slide img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
        
           </b-carousel-slide>
-          <b-carousel-slide class="new_height" img-src="@/assets/mi.jpg">
+          <b-carousel-slide class="new_height" img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
           </b-carousel-slide>
         </b-carousel>
       </div>

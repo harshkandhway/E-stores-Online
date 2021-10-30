@@ -9,6 +9,8 @@ const STORE_ID = 'storeId';
 const PRODUCT_ID = 'productId';
 const ADDRESS = 'address';
 const STORE_EMAIL = 'storeEmail';
+const STORE_IMAGE = 'storeImage';
+const PRODUCT_IMAGE = 'productImage';
 
 const auth={
     state:{
@@ -19,7 +21,10 @@ const auth={
         storeId: localStorage.getItem(STORE_ID) || '',
         productId: localStorage.getItem(PRODUCT_ID) || '',
         address: localStorage.getItem(ADDRESS) || '',
-        storeEmail: localStorage.getItem(STORE_EMAIL) || ''
+        storeEmail: localStorage.getItem(STORE_EMAIL) || '',
+        storeImage: localStorage.getItem(STORE_IMAGE) || '',
+        productImage: localStorage.getItem(PRODUCT_IMAGE) || '',
+
     },
     mutations: {
         // setToken( state, token ) {
@@ -47,8 +52,16 @@ const auth={
             localStorage.setItem(ADDRESS, address);
         },
         setStoreEmail(state, storeEmail){
-            state.email = storeEmail
+            state.storeEmail = storeEmail
             localStorage.setItem(STORE_EMAIL, storeEmail);
+        },
+        setStoreImage(state, storeImage){
+            state.storeImage = storeImage
+            localStorage.setItem(STORE_IMAGE, storeImage);
+        },
+        setProductImage(state, productImage){
+            state.productImage = productImage
+            localStorage.setItem(PRODUCT_IMAGE, productImage);
         }
 
     },

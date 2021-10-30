@@ -88,11 +88,12 @@
       app
       color="primary"
       dark
-      src=""
       prominent
+      :src="image"
       absolute
-      :height="$route.path==='/storemanage/product'?'450':'170'"
+      :height="$route.path==='/productmanage'?'450':'170'"
     >
+    <!-- src="/uploads/6176cf504e0c23e527f580c1/nike.jpg" -->
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -122,6 +123,12 @@
     data(){
       return {
         drawer: false,
+        // image: '/uploads/6176cf504e0c23e527f580c1/nike.jpg'
+      }
+    },
+    computed:{
+      image(){
+        return this.$store.state.auth.storeImage
       }
     },
     methods:{

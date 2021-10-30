@@ -13,7 +13,7 @@
                     <div class="store-name">
                         <h4>{{store.name}}</h4>
                     </div>
-                    <div class="modify-store-btn" v-if="role ==='admin'" @click="modifyStore(store._id)">
+                    <div class="modify-store-btn" v-if="role ==='admin'" @click="modifyStore(store._id,store.imageUrl)">
                          <v-btn
                                 elevation="2"
                                 class="ma-4"
@@ -56,11 +56,13 @@ export default {
     //     }
     //   });
     // }
-modifyStore(storeId){
+modifyStore(storeId,storeImage){
   console.log(storeId)
   this.update = true
   this.$store
         .commit('setStoreId', storeId)
+  this.$store
+        .commit('setStoreImage', storeImage)
   this.$router.push({
     name:"StoreForm",
     params:{
