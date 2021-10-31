@@ -106,7 +106,7 @@
           <div class="product-details">
             <div class="name-price">
               <h5 class="m-small">{{product.productName}}</h5>
-              <h6 class="m-small">{{product.price}}</h6>
+              <h6 class="m-small">Rs. {{product.price}}</h6>
             </div>
             <div style="margin:10px">
               <v-btn elevation="2" class="ma-4" @click="removeProduct(product._id)">Remove</v-btn>

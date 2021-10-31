@@ -13,14 +13,14 @@
                     <div class="store-name">
                         <h4>{{store.name}}</h4>
                     </div>
-                    <div class="modify-store-btn" v-if="role==='user'">
+                    <!-- <div class="modify-store-btn" v-if="role==='user'">
                          <v-btn
                                 elevation="2"
                                 class="ma-4"
                             >
                              Modify Store
                             </v-btn>
-                    </div>
+                    </div> -->
                  </div>
               </div>
           </div>

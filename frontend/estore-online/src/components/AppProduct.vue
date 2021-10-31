@@ -1,6 +1,6 @@
 <template>
   <div style="positon:relative">
-    <div class="banner">
+    <div class="banner" v-if="role === 'customer'">
       <img :src="storeImage" />
       <div
         class="overlay"
@@ -29,7 +29,7 @@
                 <h5 class="m-small">{{product.productName}}</h5>
                 <h6 class="m-small">{{product.price}}</h6>
               </div>
-              <div style="margin:15px">
+              <div style="margin:15px" v-if="(role === 'customer') && isAuthenticated">
                 <v-btn elevation="2" class="ma-4" @click="addToCart(product)">Add to cart</v-btn>
               </div>
             </div>
@@ -56,6 +56,12 @@ export default {
   computed: {
     storeImage() {
       return this.$store.state.auth.storeImage;
+    },
+    role(){
+      return this.$store.state.auth.role;
+    },
+    isAuthenticated(){
+      return this.$store.getters.isAuthenticated
     }
   },
 
@@ -102,7 +108,7 @@ export default {
 
 <style>
 .banner {
-  height: 400px;
+  height: 450px;
   width: 100%;
   /* background: chartreuse; */
   position: relative;

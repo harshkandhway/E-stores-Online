@@ -11,7 +11,7 @@ const {
     uploadImage,
 } = require('../controllers/stores')
 
-router.route('/').get(authenticateUser,getAllStores).post(authenticateUser,createStores)
+router.route('/').get(getAllStores).post(authenticateUser,createStores)
 router.route('/requests').get(authenticateUser,getAllRequestedStores)
 router.route('/:id').get(authenticateUser,getStore).patch(authenticateUser, authorizePermissions('admin'),updateStore).delete(authenticateUser, authorizePermissions('admin'),deleteStore)
 router.route('/:id/uploadImage').post(authenticateUser, authorizePermissions('admin'),uploadImage)

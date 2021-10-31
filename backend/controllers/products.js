@@ -30,7 +30,8 @@ const createProducts = async (req, res) => {
             new: true,
             runValidators: true,
         })
-        res.status(201).json( {storeNew})
+        const product = storeNew.products[storeNew.products.length-1]
+        res.status(201).json( {product})
     }
     catch (error) {
         res.status(500).json({ msg: error.message })

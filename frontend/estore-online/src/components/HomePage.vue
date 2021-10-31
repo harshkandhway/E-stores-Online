@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div style="padding-bottom:150px">
     <div class="add_carousel">
-      <div>
+      <div style="height:350px">
         <b-carousel
           id="carousel-fade"
           class="carousel"
           style="text-shadow: 0px 0px 2px #000"
           fade
           indicators
-          img-width= 851
-          img-height= 315
+          image-height="350"
+          :interval="2000"
         >
-          <b-carousel-slide img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
-          
-          </b-carousel-slide>
-          <b-carousel-slide img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
-       
-          </b-carousel-slide>
-          <b-carousel-slide class="new_height" img-src="/uploads/6176cf504e0c23e527f580c1/dominos.jpg">
+          <b-carousel-slide
+            v-for="image in stores"
+            :key="image.imageUr"
+          >
+            <template v-slot:img>
+              <img class="d-block class-name" :src="image.imageUrl" @click="seeProduct(image.products,image._id,image.imageUrl)"/>
+            </template>
           </b-carousel-slide>
         </b-carousel>
       </div>
@@ -38,22 +38,100 @@
         <img src />
         @/assets/kotakbankdiscount.jpg
       </div>
-    </div> -->
+    </div>-->
     <AppFooter />
   </div>
 </template>
 
 <script>
 import AppFooter from "@/components/AppFooter.vue";
+import { store,getSingleStore } from "@/services/store";
 export default {
   name: "HomePage",
   components: {
     AppFooter
+  },
+  data() {
+    return {
+      stores: []
+    };
+  },
+  computed:{
+      isAuthenticated(){
+          return this.$store.getters.isAuthenticated;
+      },
+  },
+  methods: {
+     seeProduct(products,storeId, storeImage){
+            // console.log(products);
+            // console.log(storeId);
+            if(this.$store.getters.isAuthenticated){
+            getSingleStore(storeId).then(data=>{
+                this.$store
+        .commit('setAddress', data.store.address)
+        this.$store
+        .commit('setStoreEmail', data.store.storeEmail)
+            this.$store
+        .commit('setStoreId', storeId)
+         this.$store
+        .commit('setStoreImage', storeImage)
+         this.$router.push({
+                        name: 'AppProduct',
+                        params: {
+                            storeId: storeId
+                        }
+                    });
+        })
+
+           
+        
+        // console.log('vuex store',this.$store.state.auth.storeId)
+     }
+     else
+      this.$router.push({name:'Login'}) 
+        }
+
+  },
+  created() {
+    store()
+      .then(data => {
+        // loader.hide()
+        this.stores = data.store;
+        // console.log("is auth", this.$store.getters.isAuthenticated);
+        // console.log(this.stores);
+      })
+      .catch(error => error);
   }
 };
 </script>
 
 <style scoped>
+.class-name {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.add_carousel {
+  height: 450px;
+}
+
+.carousel-inner {
+  height: 450px;
+}
+
+/* .carousel {
+  height: 350px;
+} */
+
+.carousel-item {
+  height: 450px;
+}
+
+/* .carousel-item img {
+  height: 350px;
+} */
+
 .add_carousel {
   margin: 0 auto;
 }

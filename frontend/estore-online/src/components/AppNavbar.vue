@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="(this.$store.state.auth.role === 'customer') || !this.$store.getters.isAuthenticated">
     <b-navbar toggleable="lg" variant="info" class="navbar">
       <b-navbar-brand href="#">E-stores Online</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

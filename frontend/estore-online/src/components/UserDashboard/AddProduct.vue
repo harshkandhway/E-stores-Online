@@ -55,8 +55,8 @@
               </div>
             </div>
             <br />
-              <div style="display:flex; flex-direction:column">
-                <span>Upload an image:</span>
+              <!-- <div style="display:flex; flex-direction:column"> -->
+                <!-- <span>Upload an image:</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -72,13 +72,15 @@
                 class="mt-0 mb-0"
                 style="background-color:goldenrod; color:white; width:fit-content"
                 @click="onUpload"
-              >Upload Image</v-btn>
+              >Upload Image</v-btn> -->
             <div>
               <input type="submit" value="Add Now" class="submit" />
               
             </div>
           </div>
+          
         </form>
+        <div style="margin:20px 10px 0 10px">Note: Please upload product image in the next page</div>
       </div>
     </div>
     <div class="company-logo">
@@ -93,7 +95,7 @@
 
 <script>
 import {showMe,getSingleUser} from '@/services/user'
-import {createProduct,productImage} from '@/services/product'
+import {createProduct} from '@/services/product'
 export default {
   components:{
     
@@ -103,7 +105,7 @@ export default {
     tempdetail: "",
     product:{productBrand:'',
                 productName: "",
-                price: "Rs. ",
+                price: 0,
                 size: "",
                 imageUrl: "",
                 productDetails: []
@@ -125,31 +127,33 @@ export default {
       then(data=>{
         this.product.productBrand='',
                 this.product.productName="",
-                this.product.price= "Rs. ",
+                this.product.price= 0,
                 this.product.size= "",
                 this.product.imageUrl= "",
                 this.product.productDetails= []
                 this.tempdetail = ""
-           
+                console.log(data)
+                 this.$store.commit("setProductId", data.product._id);
+                this.$router.push({name:'ProductForm'})
         console.log(data)
       })
   },
-  productImage(event) {
-      this.selectedImage = event.target.files[0];
-      console.log(this.selectedImage);
-    },
+  // productImage(event) {
+  //     this.selectedImage = event.target.files[0];
+  //     console.log(this.selectedImage);
+  //   },
 
-    onUpload() {
-      const formData = new FormData();
-      formData.append("image", this.selectedImage);
-      productImage(
-        this.$store.state.auth.storeId,
-        this.$store.state.auth.productId,
-        formData
-      ).then(data => {
-        this.product.imageUrl = data.image;
-      });
-    },
+    // onUpload() {
+    //   const formData = new FormData();
+    //   formData.append("image", this.selectedImage);
+    //   productImage(
+    //     this.$store.state.auth.storeId,
+    //     this.$store.state.auth.productId,
+    //     formData
+    //   ).then(data => {
+    //     this.product.imageUrl = data.image;
+    //   });
+    // },
   },
   created(){
 showMe().then(data=>{

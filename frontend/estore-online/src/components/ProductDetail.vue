@@ -24,7 +24,7 @@
           <v-btn class="ma-2" outlined fab color="orange">9</v-btn> -->
           {{product.size}}
         </div>
-        <div class="mt-4">
+        <div class="mt-4" v-if="this.$store.state.auth.role === 'customer' && this.$store.getters.isAuthenticated">
           <v-btn elevation="2" large @click='addToCart(product)'>Add to cart</v-btn>
         </div>
         <div style="margin-top:50px">

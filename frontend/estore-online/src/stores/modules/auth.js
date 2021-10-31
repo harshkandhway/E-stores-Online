@@ -125,11 +125,11 @@ const auth={
             localStorage.removeItem( KEY_ROLE );
             localStorage.removeItem( STORE_ID );
             localStorage.removeItem( PRODUCT_ID );
-
+            commit( 'setStoreId', '' );
             commit( 'setEmail', '' );
             commit( 'setName', '' );
             commit( 'setRole', '' );
-            commit( 'setStoreId', '' );
+            
             commit( 'setProductId', '' );
           this.$router.push({
             name: "login"

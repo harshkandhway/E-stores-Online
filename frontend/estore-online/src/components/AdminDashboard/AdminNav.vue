@@ -1,5 +1,5 @@
 <template>
- <div v-if="this.$store.state.auth.role === 'admin' || 'user' || this.$store.getters.isAuthenticated">
+ <div v-if="(this.$store.state.auth.role === 'admin' || 'user') && this.$store.getters.isAuthenticated">
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
@@ -11,6 +11,15 @@
         dense
         nav
       >
+        <v-list-item to='/' v-if="this.$store.state.auth.role === 'admin'">
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item to='/storemanage' v-if="this.$store.state.auth.role === 'admin'">
           <v-list-item-icon>
             <v-icon>mdi-format-list-checks</v-icon>
@@ -46,6 +55,33 @@
             <v-list-item-title>Add Product</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item to='/store'>
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>All Registered Stores</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to='/registerstore'>
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Store Request</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- <v-list-item to='/store/product'>
+          <v-list-item-icon>
+            <v-icon>mdi-format-list-checks</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>All Registered Stores</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item> -->
 
         <v-list-item @click="logout()">
           <v-list-item-icon>
@@ -91,10 +127,10 @@
       prominent
       :src="image"
       absolute
-      :height="$route.path==='/productmanage'?'450':'170'"
+      :height="$route.path==='/productmanage'?'450':($route.path==='/'?'80':'170')"
     >
     <!-- src="/uploads/6176cf504e0c23e527f580c1/nike.jpg" -->
-      <template v-slot:img="{ props }">
+      <template v-slot:img="{ props }" v-if="role==='user'||'admin'">
         <v-img
           v-bind="props"
         ></v-img>
@@ -129,12 +165,17 @@
     computed:{
       image(){
         return this.$store.state.auth.storeImage
+      
+      },
+      role(){
+      return this.$store.state.auth.role;
       }
     },
     methods:{
       logout(){
           this.$store.dispatch('logout')
-          .then(()=>this.$router.push({name:'Login'}))
+          .then(()=>{
+            this.$router.push({name:'Login'})})
       }
     }
   }
