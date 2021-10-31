@@ -7,7 +7,7 @@
               <div class="store-details" v-for="(store,index) in stores" :key="index">
                   <!--  -->
                  <div class="store-img">
-                     <img src="https://media-cdn.tripadvisor.com/media/photo-s/09/4e/41/1b/domino-s-pizza-brakpan.jpg">
+                     <img :src="store.imageUrl">
                  </div>
                <div class="store-information">
                     <div class="store-name">

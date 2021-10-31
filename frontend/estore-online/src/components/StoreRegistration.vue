@@ -92,7 +92,7 @@ export default {
 
 <style scoped>
 .form-design {
-  width: 60%;
+  width: fit-content;
   border: 1px solid grey;
   height: auto;
   margin: 60px auto;

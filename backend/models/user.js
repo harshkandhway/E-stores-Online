@@ -31,6 +31,11 @@ role:{
 storeId:{
     type:String,
     default: '',
+},
+cartRegestered:{
+    type:Boolean,
+    default: false,
+    // unique:true,
 }
 });
 

@@ -4,7 +4,7 @@
             <span>{{getAddress}} | Email: {{getEmail}}</span>
         </div>
         <div>
-           <span>Copyright © 2021 Nike</span>
+           <span>Copyright © 2021 {{}}</span>
         </div>
     </footer>
 </template>
@@ -40,12 +40,12 @@ export default{
     align-items: center;
     /* margin:auto; */
     /* clear: both; */
-    position: relative;
+    position: absolute;
     width: 100%;
     /* top: 10px; */
     /* height: 200px; */
-    /* margin-top: 75px; */
-    /* bottom: 0; */
+    /* margin-top: 1000px; */
+    bottom: 0;
     /* flex-grow: 1; */
     /* bottom: 0; */
 }

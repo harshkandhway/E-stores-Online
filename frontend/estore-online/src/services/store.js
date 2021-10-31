@@ -136,6 +136,11 @@ function createStore(form) {
     })
         .then(res => {
             loader.hide()
+            Vue.$toast.open({
+                message: "Thanks for your request, Your store would be listed soon",
+                duration: 8000,
+                type: 'success',
+            });
             return res.data;
         }).catch(error => {
             loader.hide()
@@ -162,7 +167,7 @@ function storeImage(storeId,image) {
         .then(res => {
             loader.hide()
             Vue.$toast.open({
-                message: "Store modified successfully",
+                message: "Store Image added successfully",
                 duration: 3000,
                 type: 'success',
             });

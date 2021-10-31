@@ -54,6 +54,25 @@
                 <b-icon icon="trash-fill" scale="1" variant="info" shift-h=2 style="cursor:pointer" @click="deleteDetail(index)"></b-icon>
               </div>
             </div>
+            <br />
+              <div style="display:flex; flex-direction:column">
+                <span>Upload an image:</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  @change="productImage($event)"
+                  style="margin-top:15px"
+                  id="file-input"
+                />
+                <span>Current Image: {{product.imageUrl}}</span>
+              </div>
+              <br />
+              <v-btn
+                elevation="2"
+                class="mt-0 mb-0"
+                style="background-color:goldenrod; color:white; width:fit-content"
+                @click="onUpload"
+              >Upload Image</v-btn>
             <div>
               <input type="submit" value="Add Now" class="submit" />
               
@@ -74,7 +93,7 @@
 
 <script>
 import {showMe,getSingleUser} from '@/services/user'
-import {createProduct} from '@/services/product'
+import {createProduct,productImage} from '@/services/product'
 export default {
   components:{
     
@@ -114,7 +133,23 @@ export default {
            
         console.log(data)
       })
-  }
+  },
+  productImage(event) {
+      this.selectedImage = event.target.files[0];
+      console.log(this.selectedImage);
+    },
+
+    onUpload() {
+      const formData = new FormData();
+      formData.append("image", this.selectedImage);
+      productImage(
+        this.$store.state.auth.storeId,
+        this.$store.state.auth.productId,
+        formData
+      ).then(data => {
+        this.product.imageUrl = data.image;
+      });
+    },
   },
   created(){
 showMe().then(data=>{

@@ -10,6 +10,8 @@
           <b-nav-item to="/store" v-if="isAuthenticated">Store</b-nav-item>
           <b-nav-item to="/login" v-if="!isAuthenticated">Sign In</b-nav-item>
           <b-nav-item @click="logout" v-if="isAuthenticated">Logout</b-nav-item>
+          <b-nav-item to="/store/cart" v-if="isAuthenticated">Cart</b-nav-item>
+
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

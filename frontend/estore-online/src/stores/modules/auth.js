@@ -11,6 +11,7 @@ const ADDRESS = 'address';
 const STORE_EMAIL = 'storeEmail';
 const STORE_IMAGE = 'storeImage';
 const PRODUCT_IMAGE = 'productImage';
+const CART_ITEMS = 'cartItems'
 
 const auth={
     state:{
@@ -24,6 +25,7 @@ const auth={
         storeEmail: localStorage.getItem(STORE_EMAIL) || '',
         storeImage: localStorage.getItem(STORE_IMAGE) || '',
         productImage: localStorage.getItem(PRODUCT_IMAGE) || '',
+        cartItems:JSON.parse(localStorage.getItem(CART_ITEMS)) || []
 
     },
     mutations: {
@@ -62,6 +64,10 @@ const auth={
         setProductImage(state, productImage){
             state.productImage = productImage
             localStorage.setItem(PRODUCT_IMAGE, productImage);
+        },
+        setCartItem(state,cartItems){
+            state.cartItems = cartItems
+            localStorage.setItem(CART_ITEMS,JSON.stringify(cartItems))
         }
 
     },

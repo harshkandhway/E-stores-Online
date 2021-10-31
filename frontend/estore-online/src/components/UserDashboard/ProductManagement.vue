@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <Footer />
+    <AppFooter/>
   </div>
 </template>
 
@@ -39,10 +39,11 @@
 import {showMe,getSingleUser} from '@/services/user'
 import { products } from "@/services/product";
 import {getSingleStore} from "@/services/store"
+import AppFooter from "@/components/AppFooter"
 export default {
   name: "ProductManagement",
-  components: {
-    //   AdminNav
+components:{
+    AppFooter
   },
   data() {
     return {

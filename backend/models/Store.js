@@ -15,6 +15,9 @@ const Product = require('./Product')
 //         // }
     
 // })
+
+// const OrderSchema = require('./order')
+
 const StoreSchema = new mongoose.Schema({
      
     name: {
@@ -35,6 +38,7 @@ const StoreSchema = new mongoose.Schema({
         trim: true,
     },
     products:[Product],
+    orders:[],
     imageUrl: String,
     registered: {
         type: Boolean,

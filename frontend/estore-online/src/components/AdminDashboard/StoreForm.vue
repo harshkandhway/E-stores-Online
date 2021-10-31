@@ -73,11 +73,9 @@
           />
           <v-select :items="items" label="Role" solo v-model="form.role"></v-select>
 
-
-          <input type="file" accept="image/*" @change="storeImage($event)" 
-                                     id="file-input">
-                                     <br>
-           <v-btn
+          <input type="file" accept="image/*" @change="storeImage($event)" id="file-input" />
+          <br />
+          <v-btn
             elevation="2"
             class="mt-2 mb-0"
             style="background-color:goldenrod; color:white; "
@@ -96,14 +94,9 @@
     </div>
     <div class="main-container">
       <div class="product-base">
-        <div
-          class="product-design"
-          style="margin:0 20px 150px 20px "
-          v-for="(product,index) in store.products"
-          :key="index"
-        >
+        <div class="product-design" v-for="(product,index) in store.products" :key="index">
           <div class="img">
-            <img src="https://4.imimg.com/data4/RE/BI/ANDROID-41682785/product-500x500.jpeg" />
+            <img :src="product.imageUrl" />
           </div>
           <div class="wishlist">
             <v-btn class="mx-2" fab dark small color="pink">
@@ -121,34 +114,41 @@
           </div>
         </div>
       </div>
+      <AppFooter />
     </div>
   </div>
 </template>
 
 <script>
 import { deleteProduct } from "@/services/product";
-import { getSingleStore, modifyStore, deleteStore,storeImage } from "@/services/store";
+import {
+  getSingleStore,
+  modifyStore,
+  deleteStore,
+  storeImage
+} from "@/services/store";
 import { modifyUser, getSingleUser } from "@/services/user";
-// import Vue from 'vue'
+import AppFooter from "@/components/AppFooter";
 export default {
   name: "StoreForm",
-  // components:{
-  // },
+  components: {
+    AppFooter
+  },
   props: {
     storeId: String
   },
   data() {
     return {
-      store: {imageUrl: ""},
+      store: { imageUrl: "" },
       items: ["user", "customer", "admin"],
       form: {
         name: "",
         email: "",
         role: "",
-        storeId: "",
+        storeId: ""
       },
       userId: "",
-      selectedImage: null,
+      selectedImage: null
     };
   },
   methods: {
@@ -189,20 +189,21 @@ export default {
         console.log(data);
       });
     },
-    storeImage(event){
-      this.selectedImage = event.target.files[0]
-      console.log(this.selectedImage)
+    storeImage(event) {
+      this.selectedImage = event.target.files[0];
+      console.log(this.selectedImage);
       // let fileReader = new FileReader();
       // fileReader.append('image',imageFile);
       // storeImage(this.form.storeId,fileReader).then(data=>console.log(data))
     },
 
-    onUpload(){
-      const formData = new FormData()
-      formData.append('image', this.selectedImage)
-      storeImage(this.form.storeId,formData).then(data=>{
-        this.store.imageUrl = data.image
-        console.log(this.form.imageUrl)})
+    onUpload() {
+      const formData = new FormData();
+      formData.append("image", this.selectedImage);
+      storeImage(this.form.storeId, formData).then(data => {
+        this.store.imageUrl = data.image;
+        console.log(this.form.imageUrl);
+      });
     }
   },
 
@@ -231,7 +232,7 @@ export default {
 
 <style scoped>
 .form-design {
-  width: 60%;
+  width: fitcontent;
   border: 1px solid grey;
   height: auto;
   margin: 60px auto;

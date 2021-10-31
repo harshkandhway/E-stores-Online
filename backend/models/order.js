@@ -1,47 +1,51 @@
 const mongoose = require('mongoose')
 
 const SingleCartItemSchema = mongoose.Schema({
-    name: {type: String, required: true},
-    image: {type: String, required: true},
+    productName: {type: String, required: true},
+    imageUrl: {type: String, required: true},
     price: {type: String, required: true},
-    amount: {type: String, required: true},
-    product: {type: mongoose.Schema.ObjectId,ref:'Product', required: true},
+    // amount: {type: String, required: true},
+    productId: {type: mongoose.Schema.ObjectId,ref:'Product', required: true},
 })
 
 const OrderSchema = mongoose.Schema({
-    tax: {
-        type: Number,
-        required: true,
-    },
-    shippingFee:{
-        type: Number,
-        required: true,
-    },
-    subtotal:{
-        type: Number,
-        required: true
-    },
-    total:{
-        type: Number,
-        required: true
-    },
+    // tax: {
+    //     type: Number,
+    //     required: true,
+    //     default: 50
+    // },
+    // shippingFee:{
+    //     type: Number,
+    //     required: true,
+    //     default: 50
+    // },
+    // subtotal:{
+    //     type: Number,
+    //     required: true,
+    //     default: 5000
+    // },
+    // total:{
+    //     type: Number,
+    //     required: true,
+    //     default: 5000
+    // },
     cartItems:[SingleCartItemSchema],
     status:{
         type:String,
         enum:['pending','failed','paid','delivered','cancelled'],
         default: 'pending'
     },
-    user:{
+    userId:{
         type:mongoose.Schema.ObjectId,
         ref: 'User',
         required: true,
     },
-    clientSecret:{
-        type:String,
-        required: true
-    },
+    // clientSecret:{
+    //     type:String,
+    //     required: true
+    // },
 },
 {timestamps: true}
 );
 
-module.exports = mongoose.model('Order',OrderSchema)
+module.exports =  mongoose.model('Order',OrderSchema), OrderSchema
