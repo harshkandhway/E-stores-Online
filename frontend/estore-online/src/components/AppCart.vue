@@ -26,8 +26,8 @@
                 </div>
             </div>
         </div>
-        <div style="display:flex; flex-direction:column; align-items:center;">
-            <div class="payment-design">
+        <div style="display:flex; flex-direction:column; align-items:center;" >
+            <div class="payment-design" v-if="getCartItem.length>0">
                 <div>
                     <h4 class="mt-2">Order Details</h4>
                     <div class="payment-details">
@@ -52,21 +52,32 @@
                                 elevation="2"
                                 class="mt-8"
                                 color="orange"
+                                @click="createOrder"
                                 >
-                                Proceed to pay
+                                Confirm Order
                         </v-btn>
                     </div>
                 </div>
             </div>
+            <div style="font-size: 36px;margin-top:50px" v-else><span>Your cart is empty</span></div>
         </div>
+        
     </div>
 </template>
 
 <script>
+import {showMe} from '@/services/user'
+import {createOrder} from '@/services/order'
 export default {
   name: "AppCart",
   data() {
-    return {};
+    return {
+        form:{
+            userId:'',
+            cartItems:[]
+        }
+        
+    };
   },
 
   computed: {
@@ -87,8 +98,24 @@ export default {
             return total
       }
   },
+  methods:{
+      createOrder(){
+          this.form.cartItems = this.getCartItem
+          console.log(this.form)
+          createOrder(this.$store.state.auth.storeId,this.$store.state.auth.productId,this.form).then(data=>{
+              this.$store.commit('setCartItem', '')
+              localStorage.removeItem( 'cartItem' );
+              console.log(data)
+              })
+      }
+  },
 
-  created() {}
+  created() {
+      showMe().then(data=>{
+          console.log(data)
+          this.form.userId = data.user.userId
+          })
+  }
 };
 </script>
 
