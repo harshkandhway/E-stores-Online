@@ -20,7 +20,8 @@ app.use(morgan('tiny'))
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use(cors())
-app.use(express.static('./public'));
+
+app.use(express.static(__dirname + './public'));
 app.use(fileUpload());
 // process.env.JWT_SECRET
 
@@ -37,8 +38,12 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/order', order);
 app.use(notFoundMiddleware);
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(__dirname + './public'));
+    app.get(/.*/, (req,res)=>res.sendFile(__dirname + '/public/index.html'));
+}
 
-const port = 3001
+const port = process.env.port || 3001;
 
 connectDB(process.env.MONGO_URI).then(()=>{
     console.log("db connected..")
