@@ -39,16 +39,6 @@
                      <li>Regular Fit</li>
             <li>Lace Fastening</li>-->
           </ul>
-          <div class="mt-4 details">
-            The Nike Revolution 4 cushions the strides with soft foam to keep one running in comfort.
-            Lightweight knit material wraps the foot in breathable support, while a minimalist design
-            fits in just about anywhere the day takes. Single Layer Mesh throughout the upper for optimal
-            breathability and Soft foam midsole delivers comfort and responsive cushioning. Its textured
-            outer wall reduces the weight of the shoe. Rubber outsole offers durable traction on a variety
-            of surfaces. The pods flatten on impact then spring back at toe-off creating an effect that
-            delivers responsive cushioning. Deep flex Grooves promote natural range of motion. Spacing in
-            the tread lets the foot flex naturally.
-          </div>
         </div>
       </div>
     </div>

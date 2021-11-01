@@ -74,6 +74,7 @@
           <v-select :items="items" label="Role" solo v-model="form.role"></v-select>
 
           <input type="file" accept="image/*" @change="storeImage($event)" id="file-input" />
+          
           <br />
           <v-btn
             elevation="2"
@@ -85,15 +86,15 @@
           <input type="submit" value="Submit" class="submit" />
         </form>
       </div>
-      <div class="company-logo">
+      <!-- <div class="company-logo">
         <img
           src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
           style="width:200px; height:200px;"
         />
-      </div>
+      </div> -->
     </div>
-    <div class="main-container">
-      <div class="product-base">
+    <div class="main-container" >
+      <div class="product-base" >
         <div class="product-design" v-for="(product,index) in store.products" :key="index">
           <div class="img">
             <img :src="product.imageUrl" />
@@ -145,7 +146,8 @@ export default {
         name: "",
         email: "",
         role: "",
-        storeId: ""
+        storeId: "",
+        storeEmail: ""
       },
       userId: "",
       selectedImage: null
@@ -166,7 +168,9 @@ export default {
       console.log(this.store);
       if (this.form.storeId === "") {
         this.form.storeId = this.store._id;
+        this.form.storeEmail = this.form.email
       }
+      
       // let loader = this.$loading.show({loader:'dots'})
       modifyStore(this.$store.state.auth.storeId, this.store)
         .then(data => {
@@ -240,7 +244,7 @@ export default {
 }
 .form-container {
   padding: 35px 25px;
-  flex-basis: 75%;
+  flex-basis: 90%;
 }
 .company-logo {
   margin: auto;

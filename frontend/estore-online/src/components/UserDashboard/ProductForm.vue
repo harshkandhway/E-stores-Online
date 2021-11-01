@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div>
       <v-btn
         elevation="2"
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <br />
-              <div style="display:flex; flex-direction:column">
+              <div style="display:flex; flex-direction:column;">
                 <span>Upload an image:</span>
                 <input
                   type="file"
@@ -105,7 +105,20 @@
                   style="margin-top:15px"
                   id="file-input"
                 />
-                <span>Current Image: {{product.imageUrl}}</span>
+                <div
+                  style="font-size: smaller;
+    margin: 0 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: gray;
+    white-space: nowrap;
+    overflow: hidden;
+    /* overflow-wrap: initial;  */
+    /* width: 99%; */
+    text-overflow: ellipsis;
+    
+    /* text-overflow: ellipsis; */"
+                >Current Image: {{product.imageUrl}}</div>
               </div>
               <br />
               <v-btn
@@ -121,12 +134,12 @@
           </form>
         </div>
       </div>
-      <div class="company-logo">
+      <!-- <div class="company-logo">
         <img
           src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
           style="width:200px; height:200px;"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -215,12 +228,14 @@ export default {
   width: 60%;
   border: 1px solid grey;
   height: auto;
-  margin: 60px auto;
+  margin: 10px auto;
   display: flex;
+  justify-content: center;
+  /* text-overflow: ; */
 }
 .form-container {
   padding: 35px 25px;
-  flex-basis: 75%;
+  flex-basis: 90%;
 }
 .company-logo {
   margin: auto;
@@ -302,6 +317,9 @@ form label {
   position: relative;
   background: lightgoldenrodyellow;
 }
+.form-container {
+    width: 100%;
+  }
 @media screen and (max-width: 1200px) {
   .form-design {
     width: 60%;
@@ -312,8 +330,11 @@ form label {
   .form-container {
     justify-content: center;
     align-items: center;
-    flex-basis: 90%;
+    /* flex-basis: 90%; */
     margin: 0 auto;
+  }
+  .form-container {
+    width: 100%;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -325,6 +346,9 @@ form label {
     display: flex;
     flex-direction: column;
   }
+  .form-container {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 900px) {
   .product-details {
@@ -333,6 +357,9 @@ form label {
   }
   .addbutton {
     margin: 20px 0px;
+    width: 100%;
+  }
+  .form-container {
     width: 100%;
   }
 }

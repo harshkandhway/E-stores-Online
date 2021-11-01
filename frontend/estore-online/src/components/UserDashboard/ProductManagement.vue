@@ -104,6 +104,8 @@ modifyProduct(productId){
     showMe().then(data=>{
       this.userId = data.user.userId
       getSingleUser(this.userId).then(data=>{
+        this.$store
+        .commit('setRole', data.user.role)
         this.storeId = data.user.storeId
         getSingleStore(this.storeId).then(data=>{
           this.$store.commit('setStoreImage', data.store.imageUrl)
