@@ -8,7 +8,7 @@ import AppStore from '@/components/AppStore'
 import AppProduct from '@/components/AppProduct'
 import ProductDetail from '@/components/ProductDetail'
 import StoreRegistration from '@/components/StoreRegistration'
-// import PageNotFound from '@/components/PageNotFound';
+import PageNotFound from '@/components/PageNotFound'
 import StoreManagement from '@/components/AdminDashboard/StoreManagement'
 import StoreForm from '@/components/AdminDashboard/StoreForm'
 import ProductManagement from '@/components/UserDashboard/ProductManagement'
@@ -73,11 +73,11 @@ const router = new Router({
             props: true,
             meta
         },
-        // {
-        //     name: 'PageNotFound',
-        //     path: '*',
-        //     component: PageNotFound
-        // }
+        {
+            name: 'PageNotFound',
+            path: '*',
+            component: PageNotFound
+        },
 
         {    name: 'StoreManagement',
             path: '/storemanage',
@@ -155,12 +155,12 @@ router.beforeEach(( to, from, next ) => {
         })
     }
 
-    else if(to.name==='Login' && stores.getters.isAuthenticated && stores.state.auth.role=='admin'){
-        console.log('4th if')
-        return next({
-            name:'StoreManagement'
-        })
-    }
+    // else if(to.name==='Login' && stores.getters.isAuthenticated && stores.state.auth.role=='admin'){
+    //     console.log('4th if')
+    //     return next({
+    //         name:'Home'
+    //     })
+    // }
     
     else{
         if( authorize && !authorize.includes( stores.state.auth.role ) ) {

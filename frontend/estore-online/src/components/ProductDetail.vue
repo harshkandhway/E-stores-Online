@@ -48,6 +48,7 @@
 
 <script>
 import { singleProduct } from "@/services/product";
+import Vue from "vue"
 import AppFooter from "@/components/AppFooter.vue";
 import {showMe} from '@/services/user'
 export default {
@@ -72,14 +73,35 @@ export default {
   },
   methods: {
     addToCart(product) {
+      // if((this.$store.state.auth.cartIteams).length>0){
+      // (this.$store.state.auth.cartIteams).forEach(element => {
+      //   if(element.productId === product._id){
+      //     Vue.$toast.open({
+      //           message: "Item already in your cart",
+      //           duration: 3000,
+      //           type: 'info',
+      //       });
+      //       return
+      //   }
+      // })}
+
       this.singleItem.productName = product.productName;
       this.singleItem.imageUrl = product.imageUrl;
       this.singleItem.price = product.price;
       this.singleItem.productId = product._id;
+
+
+      Vue.$toast.open({
+                message: "Product added to cart",
+                duration: 3000,
+                type: 'success',
+            });
     //   console.log(this.cartIteam);
       showMe().then(data=>{
         //   console.log('checking store cart',this.$store.state.auth.cart.cartIteams)
           this.cart.userId=data.user.userId
+          
+
               this.$store.state.auth.cartItems.push(this.singleItem)
             //   console.log('checking store cart',this.$store.state.auth.cartItems)
             this.$store.commit('setCartItem',this.$store.state.auth.cartItems)
