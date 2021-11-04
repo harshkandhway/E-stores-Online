@@ -27,11 +27,11 @@
             <div class="product-details">
               <div class="name-price">
                 <h5 class="m-small">{{product.productName}}</h5>
-                <h6 class="m-small">{{product.price}}</h6>
+                <h6 class="m-small">Rs. {{product.price}}</h6>
               </div>
-              <div style="margin:15px" v-if="(role === 'customer') && isAuthenticated">
+              <!-- <div style="margin:15px" v-if="(role === 'customer') && isAuthenticated">
                 <v-btn elevation="2" class="ma-4" @click="addToCart(product)">Add to cart</v-btn>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

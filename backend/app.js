@@ -15,13 +15,13 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload')
 
 
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 app.use(morgan('tiny'))
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use(cors())
 
-app.use(express.static(__dirname + './public'));
+app.use(express.static(__dirname + '/public'));
 app.use(fileUpload());
 // process.env.JWT_SECRET
 
@@ -36,18 +36,21 @@ app.use('/api/v1/stores',products);
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/order', order);
+
+
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static(__dirname + './public'));
+//     app.get(/.*/, (req,res)=>res.sendFile(__dirname + '/public/index.html'));
+// }
+
+app.get(/.*/, (req,res)=>res.sendFile(__dirname + '/public/index.html'));
 app.use(notFoundMiddleware);
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(__dirname + './public'));
-    app.get(/.*/, (req,res)=>res.sendFile(__dirname + '/public/index.html'));
-}
-
-const port = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 connectDB(process.env.MONGO_URI).then(()=>{
     console.log("db connected..")
-    app.listen(port,console.log(`server is listening on port ${port}`))
+    app.listen(PORT,console.log(`server is listening on port ${PORT}`))
 })
 .catch((err)=>console.log(err))
 

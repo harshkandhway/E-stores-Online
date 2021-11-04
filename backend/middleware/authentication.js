@@ -3,7 +3,7 @@ const {isTokenValid} = require('../utils/jwt')
 const authenticateUser = async (req,res,next)=>{
     const token = req.signedCookies.token;
     if(!token){
-        return res.status(404).json({msg:`Authentication failed`})
+        return res.status(401).json({msg:`Authentication failed`})
     }
     try {
         const {payload} = isTokenValid({token})

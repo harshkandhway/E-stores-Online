@@ -4,7 +4,7 @@
             <span>{{getAddress}} | Email: {{getEmail}}</span>
         </div>
         <div>
-           <span>Copyright © 2021 {{}}</span>
+           <span>Copyright © 2021</span>
         </div>
     </footer>
 </template>
