@@ -4,9 +4,6 @@
       <div class="form-container">
         <div class="store-name">E-Stores Online</div>
         <div class="form-heading">Register Store</div>
-        <!-- <div class="form-heading" v-if="!this.update">
-                Update Store
-        </div>-->
         <form @submit.prevent="createStore()">
           <div>
             <form>

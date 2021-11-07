@@ -10,11 +10,6 @@
           <div class="img">
             <img :src="product.imageUrl" />
           </div>
-          <!-- <div class="wishlist">
-            <v-btn class="mx-2" fab dark small color="pink">
-              <v-icon dark>mdi-heart</v-icon>
-            </v-btn>
-          </div> -->
           <div class="product-details">
             <div class="name-price">
               <h5 class="m-small">{{product.productName}}</h5>
@@ -35,7 +30,6 @@
 </template>
 
 <script>
-// import AdminNav from '@/components/AdminDashboard/AdminNav'
 import {showMe,getSingleUser} from '@/services/user'
 import { products } from "@/services/product";
 import {getSingleStore} from "@/services/store"
@@ -56,18 +50,6 @@ components:{
     };
   },
   methods: {
-    // seeProduct(products, productId) {
-    //   // console.log(products);
-    //   // console.log(productId);
-    //   this.$product.commit("setProductId", productId);
-    //   console.log("vuex product", this.$product.state.auth.productId);
-    //   this.$router.push({
-    //     name: "AppProduct",
-    //     params: {
-    //       productId: productId
-    //     }
-    //   });
-    // }
 modifyProduct(productId){
   console.log(productId)
   this.update = true
@@ -119,23 +101,6 @@ modifyProduct(productId){
       })
     })
   }
-    // getSingleStore(this.$store.state.auth.storeId)
-    //   .then(data => {
-    //     // loader.hide()
-    //     this.store = data.store;
-    //     // this.form.storeId = data.store._id
-    //     this.userId = data.store.userId;
-    //     getSingleUser(this.userId)
-    //       .then(data => {
-    //         this.form.role = data.user.role;
-    //         this.form.name = data.user.name;
-    //         this.form.email = data.user.email;
-    //         this.form.storeId = data.user.storeId;
-    //       })
-    //       .catch(error => error);
-    //     console.log("req store", this.store);
-    //   })
-    //   .catch(error => error);
 };
 </script>
 

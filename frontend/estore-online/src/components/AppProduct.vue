@@ -19,19 +19,11 @@
             <div class="img" @click="productDetail(product._id,product.imageUrl)">
               <img :src="product.imageUrl" />
             </div>
-            <!-- <div class="wishlist">
-              <v-btn class="mx-2" fab dark small color="pink">
-                <v-icon dark>mdi-heart</v-icon>
-              </v-btn>
-            </div> -->
             <div class="product-details">
               <div class="name-price">
                 <h5 class="m-small">{{product.productName}}</h5>
                 <h6 class="m-small">Rs. {{product.price}}</h6>
               </div>
-              <!-- <div style="margin:15px" v-if="(role === 'customer') && isAuthenticated">
-                <v-btn elevation="2" class="ma-4" @click="addToCart(product)">Add to cart</v-btn>
-              </div> -->
             </div>
           </div>
         </div>
@@ -129,23 +121,12 @@ export default {
 }
 
 .main-container {
-  /* display: flex; */
-  /* position: relative; */
-  /* justify-content: center;
-  align-items: center; */
-  /* width: 90%; */
-  /* margin: 0 0 200px 0;
-  padding: 60px 0 145px 0; */
+
    position: relative;
   z-index: 0;
 }
 .product-base {
-  /* display: flex;
-  /* flex-direction: column; */
-  /* justify-content: center;
-  margin: 10px 0;
-  flex-wrap: wrap;
-  min-height: 100%; */
+
   display: flex;
   justify-content: center;
   width: 100%;
@@ -155,24 +136,10 @@ export default {
   padding: 20px 0 200px 0;
 }
 .product-design {
-  /* flex-basis: 27%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  margin: 0 20px 150px 20px;
-  position: relative;
-  outline: none;
-  width: 350px;
-  height: 300px; */
-   /* flex-wrap: wrap; */
-  /* display: flex; */
-  /* height: fit-content; */
-  /* margin-top: 10px; */
+
   border: 2px solid lightgray;
   border-radius: 5px;
-  /* flex-direction: column; */
-  /* margin-bottom: 10px; */
-  /* flex-basis: 32%; */
+
   margin: 20px;
   min-width: 370px;
   max-width: 370px;
@@ -183,9 +150,7 @@ export default {
 }
 
 .product-content{
-  /* display: flex;
-  flex-direction: column;
-  margin: 0 0 200px 0; */
+
   height: 100%;
 }
 
@@ -194,18 +159,7 @@ export default {
   height: 300px;
   position: relative;
 }
-/* .img {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 350px;
-} */
-/* .wishlist {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 10px;
-} */
+
 .name-price {
   display: flex;
   flex-direction: column;
@@ -216,17 +170,10 @@ export default {
   margin: 2px 0;
 }
 .product-details {
-  /* display: flex;
-  justify-content: space-between;
-  height: auto;
-  /* margin-top: -6px; */
-  /* margin-bottom: 150px; */
-  /* align-items: center;
-  border: 2px solid lightgrey;
-  border-top: 2px solid white; */
+
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
+
 }
 .product-design:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

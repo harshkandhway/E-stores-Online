@@ -9,21 +9,28 @@
       <div class="form-heading">Sign In</div>
       <form class="form" @submit.prevent="login">
         <label for="Email">Email</label>
-        <input type="email" name="email" placeholder="Email" class="input-style" v-model="formLogin.email"/>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="input-style"
+          v-model="formLogin.email"
+        />
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password" class="input-style" v-model="formLogin.password"/>
-        <input type="submit" value="Sign In" class="submit" style="margin-top: 40px"/>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          class="input-style"
+          v-model="formLogin.password"
+        />
+        <input type="submit" value="Sign In" class="submit" style="margin-top: 40px" />
       </form>
-      <!-- <div class="forgot-password" v-if="!isAuthenticated">
-        <span>Invalid login or password</span> 
-      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-// import Vue from 'vue';
-// import {login} from '@/services/login'
 export default {
   name: "Login",
   data() {
@@ -34,32 +41,30 @@ export default {
       }
     };
   },
-    computed:{
-        // isAuthenticated(){
-        //     return this.$store.getters.isAuthenticated;
-        // }
-    },
+  computed: {
+    // isAuthenticated(){
+    //     return this.$store.getters.isAuthenticated;
+    // }
+  },
 
-
-  methods:{
-      login(){
-          this.$store
+  methods: {
+    login() {
+      this.$store
         .dispatch("login", this.formLogin)
         .then(() => {
-          if(this.$store.state.auth.role==='customer')
+          if (this.$store.state.auth.role === "customer")
             this.$router.push({ name: "AppStore" });
-          else if(this.$store.state.auth.role==='admin')
+          else if (this.$store.state.auth.role === "admin")
             this.$router.push({ name: "StoreManagement" });
-          else
-            this.$router.push({ name: "ProductManagement" });
+          else this.$router.push({ name: "ProductManagement" });
         })
         .catch(error => {
           console.log(error);
-          
+
           console.log("is auth", this.$store.getters.isAuthenticated);
         });
-      }
-  },
+    }
+  }
 };
 </script>
 

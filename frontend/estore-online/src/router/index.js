@@ -140,13 +140,6 @@ router.beforeEach(( to, from, next ) => {
             name:'Login'
         })
     }
-    
-    // else if((to.name==='Login' && stores.getters.isAuthenticated) && stores.state.auth.role=='user'){
-    //     console.log('second if')
-    //     return next({
-    //         name:'ProductManagement'
-    //     })
-    // }
 
     else if(to.name==='AppProduct' && !stores.getters.isAuthenticated){
         console.log('3rd if')
@@ -155,13 +148,6 @@ router.beforeEach(( to, from, next ) => {
         })
     }
 
-    // else if(to.name==='Login' && stores.getters.isAuthenticated && stores.state.auth.role=='admin'){
-    //     console.log('4th if')
-    //     return next({
-    //         name:'Home'
-    //     })
-    // }
-    
     else{
         if( authorize && !authorize.includes( stores.state.auth.role ) ) {
             console.log('last if')
@@ -171,72 +157,6 @@ router.beforeEach(( to, from, next ) => {
             });
         }
     }
-    // if( to.name !== 'Login' && !stores.getters.isAuthenticated ) {
-    //     return next({
-    //         name: 'Login'
-    //     });
-    // }
-    // if( to.name !== 'HomePage' && !stores.getters.isAuthenticated ) {
-    //     return next({
-    //         name: 'HomePage'
-    //     });
-    // }
-    
-    // if(to.name=='Login' && stores.getters.isAuthenticated){
-    //     return next({
-    //         name: 'HomePage'
-    //     });
-    // }
-    // if(to.name=='Register' && !stores.getters.isAuthenticated){
-    //     return next({
-    //         name: 'Register'
-    //     });
-    // }
-    // if(to.name=='Register' && stores.getters.isAuthenticated){
-    //     return next({
-    //         name: 'HomePage'
-    //     });
-    // }
-    // if(to.name=='StoreRegistration' && stores.getters.isAuthenticated){
-    //     return next({
-    //         name: 'StoreRegistration'
-    //     });
-    // }
-    // if(to.name=='StoreRegistration' && !stores.getters.isAuthenticated){
-    //     return next({
-    //         name: 'Register'
-    //     });
-    // }
-    // if(to.name=='StoreManagement' && stores.state.auth.role=='user'){
-    //     return next({
-    //         name: 'ProductManagement'
-    //     });
-    // }
-    // if(to.name=='StoreForm' && stores.state.auth.role=='user'){
-    //     return next({
-    //         name: 'ProductManagement'
-    //     });
-    // }
-    // if(to.name=='RequestedStore' && stores.state.auth.role=='user'){
-    //     return next({
-    //         name: 'ProductManagement'
-    //     });
-    // }
-    // if(to.name=='StoreManagement' && stores.state.auth.role=='customer'){
-    //     return next({
-    //         name: 'AppProduct'
-    //     });
-    // }
-    // if(to.name=='StoreForm' && stores.state.auth.role=='customer'){
-    //     return next({
-    //         name: 'AppProduct'
-    //     });
-    // }
-    // if(to.name=='RequestedStore' && stores.state.auth.role=='customer'){
-    //     return next({
-    //         name: 'AppProduct'
-    //     });
-    // }
     next();
 });
 

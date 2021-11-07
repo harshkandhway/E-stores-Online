@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import { logout } from "@/services/login";
 export default {
   name: "AppNavbar",
   methods: {

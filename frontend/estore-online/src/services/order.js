@@ -1,14 +1,13 @@
 import axios from 'axios';
-import Vue from  'vue';
+import Vue from 'vue';
 
-function createOrder(storeId,productId,form) {
-    let loader = Vue.$loading.show({loader:'dots'})
-    return axios.post(`/api/v1/order/${storeId}/products/${productId}/`,form,{
+function createOrder(storeId, productId, form) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
+    return axios.post(`/api/v1/order/${storeId}/products/${productId}/`, form, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -26,9 +25,10 @@ function createOrder(storeId,productId,form) {
                 duration: 3000,
                 type: 'error',
             });
-            console.log(error) })
+            console.log(error)
+        })
 }
 
-export{
+export {
     createOrder
 }

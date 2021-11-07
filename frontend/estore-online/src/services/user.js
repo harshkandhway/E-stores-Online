@@ -1,14 +1,13 @@
 import axios from 'axios';
-import Vue from  'vue';
+import Vue from 'vue';
 
 function showMe() {
-    let loader = Vue.$loading.show({loader:'dots'})
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.get(`/api/v1/users/showMe`, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -21,17 +20,17 @@ function showMe() {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
 function getSingleUser(userId) {
-    let loader = Vue.$loading.show({loader:'dots'})
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.get(`/api/v1/users/${userId}`, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -44,15 +43,16 @@ function getSingleUser(userId) {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function modifyUser(userId,form) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function modifyUser(userId, form) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .patch(
             `/api/v1/users/updateUser/${userId}`, form, {
-                withCredentials: true
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -75,9 +75,10 @@ function modifyUser(userId,form) {
                 duration: 3000,
                 type: 'error',
             });
-        return error});
+            return error
+        });
 }
 
-export{
+export {
     showMe, modifyUser, getSingleUser
 }

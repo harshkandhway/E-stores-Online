@@ -74,14 +74,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <!-- <v-list-item to='/store/product'>
-          <v-list-item-icon>
-            <v-icon>mdi-format-list-checks</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>All Registered Stores</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
 
         <v-list-item @click="logout()">
           <v-list-item-icon>
@@ -91,33 +83,6 @@
             <v-list-item-title>Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
-        <!-- <v-list-item to='/store/product'>
-          <v-list-item-icon>
-            <v-icon>mdi-format-list-checks</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Modify Store</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item to="">
-          <v-list-item-icon>
-            <v-icon>mdi-format-list-checks</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Modify Store</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item to='/products'>
-          <v-list-item-icon>
-            <v-icon>mdi-format-list-checks</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Modify Store</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
@@ -129,7 +94,6 @@
       absolute
       :height="$route.path==='/productmanage'?'450':($route.path==='/'?'80':'170')"
     >
-    <!-- src="/uploads/6176cf504e0c23e527f580c1/nike.jpg" -->
       <template v-slot:img="{ props }" v-if="role==='user'||'admin'">
         <v-img
           v-bind="props"
@@ -146,20 +110,17 @@
     <v-main>
      <router-view></router-view>
     </v-main>
-  </v-app>  
-  <!-- <StorePage v-if="false"/> -->
+  </v-app>
   </div>
 </template>
 
 <script>
-  // import {logout} from '@/services/login'
-  // import StorePage from '@/components/StorePage.vue';
+ 
   export default {
     name:'AdminNav',
     data(){
       return {
         drawer: false,
-        // image: '/uploads/6176cf504e0c23e527f580c1/nike.jpg'
       }
     },
     computed:{
