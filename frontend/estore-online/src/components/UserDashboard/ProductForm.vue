@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div>
       <v-btn
         elevation="2"
@@ -113,10 +113,7 @@
     color: gray;
     white-space: nowrap;
     overflow: hidden;
-    /* overflow-wrap: initial;  */
-    /* width: 99%; */
     text-overflow: ellipsis;
-    
     /* text-overflow: ellipsis; */"
                 >Current Image: {{product.imageUrl}}</div>
               </div>
@@ -134,12 +131,6 @@
           </form>
         </div>
       </div>
-      <!-- <div class="company-logo">
-        <img
-          src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
-          style="width:200px; height:200px;"
-        />
-      </div> -->
     </div>
   </div>
 </template>
@@ -318,8 +309,8 @@ form label {
   background: lightgoldenrodyellow;
 }
 .form-container {
-    width: 100%;
-  }
+  width: 100%;
+}
 @media screen and (max-width: 1200px) {
   .form-design {
     width: 60%;

@@ -16,12 +16,8 @@
             style="background-color:crimson; color:white; "
             @click="deleteStore"
           >Delete store</v-btn>
-          <!-- <v-icon left>{{}}</v-icon> -->
         </div>
         <div class="form-heading">Update Store</div>
-        <!-- <div class="form-heading" v-if="!this.update">
-                Update Store
-        </div>-->
         <form @submit.prevent="modifyStore()">
           <div>
             <form>
@@ -74,7 +70,7 @@
           <v-select :items="items" label="Role" solo v-model="form.role"></v-select>
 
           <input type="file" accept="image/*" @change="storeImage($event)" id="file-input" />
-          
+
           <br />
           <v-btn
             elevation="2"
@@ -86,15 +82,9 @@
           <input type="submit" value="Submit" class="submit" />
         </form>
       </div>
-      <!-- <div class="company-logo">
-        <img
-          src="https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/application/pictures/free-logo/original/v6YLFKFeJ-Fynd.jpeg"
-          style="width:200px; height:200px;"
-        />
-      </div> -->
     </div>
-    <div class="main-container" >
-      <div class="product-base" >
+    <div class="main-container">
+      <div class="product-base">
         <div class="product-design" v-for="(product,index) in store.products" :key="index">
           <div class="img">
             <img :src="product.imageUrl" />
@@ -103,7 +93,7 @@
             <v-btn class="mx-2" fab dark small color="pink">
               <v-icon dark>mdi-heart</v-icon>
             </v-btn>
-          </div> -->
+          </div>-->
           <div class="product-details">
             <div class="name-price">
               <h5 class="m-small">{{product.productName}}</h5>
@@ -168,9 +158,9 @@ export default {
       console.log(this.store);
       if (this.form.storeId === "") {
         this.form.storeId = this.store._id;
-        this.form.storeEmail = this.form.email
+        this.form.storeEmail = this.form.email;
       }
-      
+
       // let loader = this.$loading.show({loader:'dots'})
       modifyStore(this.$store.state.auth.storeId, this.store)
         .then(data => {

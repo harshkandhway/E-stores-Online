@@ -1,14 +1,13 @@
 import axios from 'axios';
-import Vue from  'vue';
+import Vue from 'vue';
 
 function store() {
-    let loader = Vue.$loading.show({loader:'dots'})
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.get(`/api/v1/stores`, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -21,17 +20,17 @@ function store() {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
 function reqStore() {
-    let loader = Vue.$loading.show({loader:'dots'})
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.get(`/api/v1/stores/requests`, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -44,17 +43,17 @@ function reqStore() {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function getSingleStore(storeId){
-    let loader = Vue.$loading.show({loader:'dots'})
+function getSingleStore(storeId) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.get(`/api/v1/stores/${storeId}`, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -67,11 +66,12 @@ function getSingleStore(storeId){
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function deleteStore(storeId){
-    let loader = Vue.$loading.show({loader:'dots'})
+function deleteStore(storeId) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios.delete(`/api/v1/stores/${storeId}`, {
         withCredentials: true
     }, {
@@ -90,15 +90,16 @@ function deleteStore(storeId){
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function modifyStore(storeId,form) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function modifyStore(storeId, form) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .patch(
-            `/api/v1/stores/${storeId}`,form, {
-                withCredentials: true
+            `/api/v1/stores/${storeId}`, form, {
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -125,13 +126,12 @@ function modifyStore(storeId,form) {
 }
 
 function createStore(form) {
-    let loader = Vue.$loading.show({loader:'dots'})
-    return axios.post(`/api/v1/stores`, form,{
+    let loader = Vue.$loading.show({ loader: 'dots' })
+    return axios.post(`/api/v1/stores`, form, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -149,15 +149,16 @@ function createStore(form) {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function storeImage(storeId,image) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function storeImage(storeId, image) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .post(
-            `/api/v1/stores/${storeId}/uploadImage`,image, {
-                withCredentials: true
+            `/api/v1/stores/${storeId}/uploadImage`, image, {
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -184,5 +185,5 @@ function storeImage(storeId,image) {
 }
 
 export {
-    store,getSingleStore,deleteStore,modifyStore,createStore,reqStore,storeImage
+    store, getSingleStore, deleteStore, modifyStore, createStore, reqStore, storeImage
 }

@@ -1,52 +1,58 @@
 import axios from 'axios';
-import Vue from  'vue';
+import Vue from 'vue';
 
-function products(storeId){
-    let loader = Vue.$loading.show({loader:'dots'})
-    return axios.get(`/api/v1/stores/${storeId}/products`,{withCredentials:true
-},{headers:{
-        'Content-Type': 'application/json',
-        // 'Authorization' : Vue.$cookies.get('token')
-    }})
-    .then(res=>{
-        loader.hide()
-        return res.data;
-    }).catch(error=>{
-        loader.hide()
-        Vue.$toast.open({
-            message: "Failed to fetch data",
-            duration: 3000,
-            type: 'error',
-        });
-        return error})
+function products(storeId) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
+    return axios.get(`/api/v1/stores/${storeId}/products`, {
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => {
+            loader.hide()
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error
+        })
 }
 
-function singleProduct(storeId,productId){
-    let loader = Vue.$loading.show({loader:'dots'})
-    return axios.get(`/api/v1/stores/${storeId}/products/${productId}/`,{withCredentials:true
-},{headers:{
-        'Content-Type': 'application/json',
-        // 'Authorization' : Vue.$cookies.get('token')
-    }})
-    .then(res=>{
-        loader.hide()
-        return res.data;
-    }).catch(error=>{
-        loader.hide()
-        Vue.$toast.open({
-            message: "Failed to fetch data",
-            duration: 3000,
-            type: 'error',
-        });
-        return error})
+function singleProduct(storeId, productId) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
+    return axios.get(`/api/v1/stores/${storeId}/products/${productId}/`, {
+        withCredentials: true
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => {
+            loader.hide()
+            return res.data;
+        }).catch(error => {
+            loader.hide()
+            Vue.$toast.open({
+                message: "Failed to fetch data",
+                duration: 3000,
+                type: 'error',
+            });
+            return error
+        })
 }
 
-function deleteProduct(storeId,productId) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function deleteProduct(storeId, productId) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .delete(
             `/api/v1/stores/${storeId}/products/${productId}`, null, {
-                withCredentials: true
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +60,7 @@ function deleteProduct(storeId,productId) {
         }
         )
         .then(res => {
-        loader.hide()
+            loader.hide()
             Vue.$toast.open({
                 message: "Product deleted",
                 duration: 3000,
@@ -69,15 +75,16 @@ function deleteProduct(storeId,productId) {
                 duration: 3000,
                 type: 'error',
             });
-            return error});
+            return error
+        });
 }
 
-function modifyProduct(storeId,productId,form) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function modifyProduct(storeId, productId, form) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .patch(
             `/api/v1/stores/${storeId}/products/${productId}`, form, {
-                withCredentials: true
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -85,7 +92,7 @@ function modifyProduct(storeId,productId,form) {
         }
         )
         .then(res => {
-        loader.hide()
+            loader.hide()
             Vue.$toast.open({
                 message: "Product modified successfully",
                 duration: 3000,
@@ -100,17 +107,17 @@ function modifyProduct(storeId,productId,form) {
                 duration: 3000,
                 type: 'error',
             });
-            return error});
+            return error
+        });
 }
 
-function createProduct(storeId,form) {
-    let loader = Vue.$loading.show({loader:'dots'})
-    return axios.post(`/api/v1/stores/${storeId}/products`, form,{
+function createProduct(storeId, form) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
+    return axios.post(`/api/v1/stores/${storeId}/products`, form, {
         withCredentials: true
     }, {
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization' : Vue.$cookies.get('token')
         }
     })
         .then(res => {
@@ -128,15 +135,16 @@ function createProduct(storeId,form) {
                 duration: 3000,
                 type: 'error',
             });
-            return error})
+            return error
+        })
 }
 
-function productImage(storeId,productId,image) {
-    let loader = Vue.$loading.show({loader:'dots'})
+function productImage(storeId, productId, image) {
+    let loader = Vue.$loading.show({ loader: 'dots' })
     return axios
         .post(
-            `/api/v1/stores/${storeId}/products/${productId}/uploadImage/`,image, {
-                withCredentials: true
+            `/api/v1/stores/${storeId}/products/${productId}/uploadImage/`, image, {
+            withCredentials: true
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -163,6 +171,6 @@ function productImage(storeId,productId,image) {
 }
 
 
-export{
-    products,singleProduct,deleteProduct,modifyProduct,createProduct,productImage
+export {
+    products, singleProduct, deleteProduct, modifyProduct, createProduct, productImage
 }

@@ -13,14 +13,6 @@
                     <div class="store-name">
                         <h4>{{store.name}}</h4>
                     </div>
-                    <!-- <div class="modify-store-btn" v-if="role==='user'">
-                         <v-btn
-                                elevation="2"
-                                class="ma-4"
-                            >
-                             Modify Store
-                            </v-btn>
-                    </div> -->
                  </div>
               </div>
           </div>
@@ -39,8 +31,6 @@ export default{
     },
     methods:{
         seeProduct(products,storeId, storeImage){
-            // console.log(products);
-            // console.log(storeId);
             getSingleStore(storeId).then(data=>{
                 this.$store
         .commit('setAddress', data.store.address)
@@ -57,11 +47,6 @@ export default{
                         }
                     });
         })
-
-           
-        
-        // console.log('vuex store',this.$store.state.auth.storeId)
-           
         }
     },
     computed:{
@@ -75,10 +60,8 @@ export default{
     created(){
         
         store().then(data=>{
-            // loader.hide()
             this.stores = data.store;
             console.log("is auth", this.$store.getters.isAuthenticated);
-            // console.log(this.stores)
         })
         .catch(error=>error)
 

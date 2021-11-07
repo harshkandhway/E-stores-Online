@@ -23,8 +23,6 @@ app.use(cors())
 
 app.use(express.static(__dirname + '/public'));
 app.use(fileUpload());
-// process.env.JWT_SECRET
-
 app.get('/api/v1',(req,res)=>{
     console.log(req.signedCookies)
     res.send('e stores online')
