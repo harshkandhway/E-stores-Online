@@ -1,20 +1,20 @@
 import Router from 'vue-router'
 import stores from '@/stores'
-import AppCart from '@/components/AppCart'
+// import AppCart from '@/components/AppCart'
 import HomePage from '@/components/HomePage'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
+// import Login from '@/components/Login'
+// import Register from '@/components/Register'
 import AppStore from '@/components/AppStore'
 import AppProduct from '@/components/AppProduct'
-import ProductDetail from '@/components/ProductDetail'
-import StoreRegistration from '@/components/StoreRegistration'
-import PageNotFound from '@/components/PageNotFound'
-import StoreManagement from '@/components/AdminDashboard/StoreManagement'
-import StoreForm from '@/components/AdminDashboard/StoreForm'
-import ProductManagement from '@/components/UserDashboard/ProductManagement'
-import RequestedStore from '@/components/AdminDashboard/RequestedStore'
+// import ProductDetail from '@/components/ProductDetail'
+// import StoreRegistration from '@/components/StoreRegistration'
+// import PageNotFound from '@/components/PageNotFound'
+// import StoreManagement from '@/components/AdminDashboard/StoreManagement'
+// import StoreForm from '@/components/AdminDashboard/StoreForm'
+// import ProductManagement from '@/components/UserDashboard/ProductManagement'
+// import RequestedStore from '@/components/AdminDashboard/RequestedStore'
 import ProductForm from '@/components/UserDashboard/ProductForm'
-import AddProduct from '@/components/UserDashboard/AddProduct'
+// import AddProduct from '@/components/UserDashboard/AddProduct'
 
 const meta = {
     authorize:['admin','user','customer']
@@ -30,12 +30,12 @@ const router = new Router({
         {
             name: 'Login',
             path: '/login',
-            component: Login
+            component: () => import('@/components/Login')
         },
         {
             name: 'Register',
             path: '/register',
-            component: Register
+            component: () => import('@/components/Register')
         },
         {
             name: 'AppStore',
@@ -53,7 +53,7 @@ const router = new Router({
         {
             name: 'AppCart',
             path: '/store/cart',
-            component: AppCart,
+            component: () => import('@/components/AppCart'),
             props: true,
             meta: {
                 authorize: [ 'customer' ]
@@ -62,33 +62,33 @@ const router = new Router({
         {
             name: 'ProductDetail',
             path: '/store/product/productDetails',
-            component: ProductDetail,
+            component: () => import('@/components/ProductDetail'),
             props: true,
             meta
         },
         {
             name: 'StoreRegistration',
             path: '/registerstore',
-            component: StoreRegistration,
+            component: () => import('@/components/StoreRegistration'),
             props: true,
             meta
         },
         {
             name: 'PageNotFound',
             path: '*',
-            component: PageNotFound
+            component: () => import('@/components/PageNotFound'),
         },
 
         {    name: 'StoreManagement',
             path: '/storemanage',
-            component: StoreManagement,
+            component: () => import('@/components/AdminDashboard/StoreManagement'),
             meta: {
                 authorize: [ 'admin' ]
             }
         },
         {    name: 'StoreForm',
             path: '/storeform',
-            component: StoreForm,
+            component: () => import('@/components/AdminDashboard/StoreForm'),
             props: true,
             meta: {
                 authorize: [ 'admin' ]
@@ -96,7 +96,7 @@ const router = new Router({
         },
         {    name: 'RequestedStore',
             path: '/requestedstore',
-            component: RequestedStore,
+            component: () => import('@/components/AdminDashboard/RequestedStore'),
             props: true,
             meta: {
                 authorize: [ 'admin' ]
@@ -106,7 +106,7 @@ const router = new Router({
         {
             name: 'ProductManagement',
             path: '/productmanage',
-            component: ProductManagement,
+            component: () => import('@/components/UserDashboard/ProductManagement'),
             props: true,
             meta: {
                 authorize: [ 'user' ]
@@ -123,7 +123,7 @@ const router = new Router({
         {
             name: 'AddProduct',
             path: '/addproduct',
-            component: AddProduct,
+            component: () => import('@/components/UserDashboard/AddProduct'),
             props: true,
             meta: {
                 authorize: [ 'user' ]
