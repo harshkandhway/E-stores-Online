@@ -106,7 +106,7 @@ export default{
     margin: 30px 30px;
     width:350px;
     height:350px;
-    margin-bottom:100px; 
+    /* margin-bottom:50px;  */
 }
 .store-details:hover{
     box-shadow: 0 16px 30px rgba(0, 0, 0, 0.30), 0 12px 12px rgba(0, 0, 0, 0.27);
@@ -144,15 +144,15 @@ export default{
 }
 @media screen and (max-width:500px)
 {
-    .store-img{
-        width:250px;
-        height:250px;
+    .store-details{
+        width:280px;
+        height:300px;
     }
     .small-screen{
         font-size:25px;
     }
     .store-information{
-        width:250px;
+        width:280px;
         flex-direction: column;
         text-align: center;
         align-items: center;
