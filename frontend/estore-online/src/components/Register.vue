@@ -2,7 +2,7 @@
   <div class="signup">
     <div class="signup-image">
       <router-link to="/login" class="heading">
-        <input type="button" class="submit" value="Already have an account? Login!" />
+        <input type="button" class="submit" value="Login!" />
       </router-link>
     </div>
     <div class="signup-form">
@@ -135,11 +135,11 @@ export default {
 }
 @media screen and (max-width: 500px) {
   .signup {
-    width: 300px;
-    height: 500px;
+    width: 80%;
+    height: 80%;
   }
   .signup-image {
-    width: 300px;
+    width: 100%;
     height: 150px;
   }
 }

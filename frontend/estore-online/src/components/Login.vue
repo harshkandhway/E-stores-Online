@@ -24,7 +24,7 @@
           class="input-style"
           v-model="formLogin.password"
         />
-        <input type="submit" value="Sign In" class="submit" style="margin-top: 40px" />
+        <input type="submit" value="Sign In" class="submit" style="margin: 40px 0" />
       </form>
     </div>
   </div>
@@ -74,6 +74,7 @@ export default {
   height: 600px;
   margin: 40px auto;
   background-color: lightgoldenrodyellow;
+  /* padding: 20px; */
 }
 .signup-image {
   height: 200px;
@@ -128,11 +129,11 @@ export default {
 }
 @media screen and (max-width: 500px) {
   .signup {
-    width: 300px;
-    height: 500px;
+    width: 80%;
+    height: 80%;
   }
   .signup-image {
-    width: 300px;
+    width: 100%;
     height: 150px;
   }
 }
