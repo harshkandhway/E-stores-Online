@@ -2,16 +2,17 @@ const Store = require("../models/Store")
 const mongoose = require('mongoose');
 const Order = require('../models/order')
 const User = require('../models/user.js');
+const { findOneAndUpdate } = require("../models/Store");
 
 
 const getAllOrders = async (req, res) => {
     try {
-        const { id: storeID } = req.params
-        const store = await Store.findOne({ _id: storeID })
-        if (!store) {
-            return res.status(404).json({ msg: `No store with id: ${storeID}` })
+        // const { id: storeID } = req.params
+        const order = await Order.find({})
+        if (!order) {
+            return res.status(404).json({ msg: `No Order` })
         }
-        res.status(200).json(store.products)
+        res.status(200).json({order})
     }
     catch (error) {
         res.status(500).json({ msg: error.message })
@@ -19,12 +20,35 @@ const getAllOrders = async (req, res) => {
 }
 
 const getSingleOrder = async (req, res) => {
+    try{
+        const {orderId} = req.params;
+    const singleOrder = await Order.findOne({_id:orderId})
+    if(!singleOrder){
+        return res.status(404).json({msg: `No order with id: ${orderId}`});
+    }
+    res.status(200).json({singleOrder})
+    }
+    catch(error){
+        res.status(500).json({msg:error.message});
+    }
     
 }
 
 
 const getCurrentUserOrders = async (req, res) => {
-    res.send('get current order')
+    try{
+        const userId = req.user.userId;
+    console.log(req.user.userId);
+    const currentOrder = await Order.find({userId:userId})
+    if(!currentOrder){
+        return res.status(404).json({msg: `No order with user id: ${userId}`})
+    }
+    res.status(200).json({currentOrder})
+    }
+    catch(error){
+        res.status(500).json({msg:error.message});
+    }
+    
 }
 
 
@@ -150,7 +174,20 @@ const createOrder = async (req,res)=>{
     }
 
 const updateOrder = async (req, res) => {
-    
+    try{
+        const {orderId} = req.params;
+        const order = await Order.findOneAndUpdate({_id:orderId},req.body,{
+            new: true,
+            runValidators: true,
+          })
+          if(!order){
+            return res.status(404).json({msg:`No order with id: ${orderId}`})
+        }
+        res.status(200).json({order})
+    }
+    catch(error){
+        res.status(500).json({msg: error.message})
+    }
 }
 
 module.exports = {

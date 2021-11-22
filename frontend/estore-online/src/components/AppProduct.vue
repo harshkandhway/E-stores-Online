@@ -150,7 +150,6 @@ export default {
 }
 
 .product-content{
-
   height: 100%;
 }
 

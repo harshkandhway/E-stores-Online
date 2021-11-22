@@ -51,7 +51,7 @@
 
 <script>
 import { showMe } from "@/services/user";
-import { createOrder } from "@/services/order";
+import { createOrder,getAllOrder } from "@/services/order";
 export default {
   name: "AppCart",
   data() {
@@ -98,6 +98,7 @@ export default {
       console.log(data);
       this.form.userId = data.user.userId;
     });
+    getAllOrder()
   }
 };
 </script>
