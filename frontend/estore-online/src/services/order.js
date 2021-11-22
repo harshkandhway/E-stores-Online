@@ -29,6 +29,24 @@ function createOrder(storeId, productId, form) {
         })
 }
 
+async function getAllOrder(){
+    try {
+        const orders = await axios.get(`/api/v1/order/`);
+        return orders.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getMyOrders(){
+    try {
+        const orders = await axios.get(`/api/v1/order/showAllMyOrders`);
+        return orders.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export {
-    createOrder
+    createOrder,getAllOrder,getMyOrders
 }

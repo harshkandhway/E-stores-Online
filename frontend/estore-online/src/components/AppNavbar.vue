@@ -9,6 +9,7 @@
           <b-nav-item to="/registerstore" v-if="this.$store.state.auth.role === 'customer' && isAuthenticated">Register your store</b-nav-item>
           <b-nav-item to="/store" v-if="isAuthenticated">Store</b-nav-item>
           <b-nav-item to="/login" v-if="!isAuthenticated">Sign In</b-nav-item>
+          <b-nav-item to="/myorders" v-if="isAuthenticated">Orders</b-nav-item>
           <b-nav-item @click="logout" v-if="isAuthenticated">Logout</b-nav-item>
           <b-nav-item to="/store/cart" v-if="isAuthenticated">Cart</b-nav-item>
 

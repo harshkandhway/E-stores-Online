@@ -74,6 +74,14 @@ const router = new Router({
             meta
         },
         {
+            name: 'MyOrders',
+            path: '/myorders',
+            component: () => import('@/components/MyOrders'),
+            props: true,
+            meta
+        },
+
+        {
             name: 'PageNotFound',
             path: '*',
             component: () => import('@/components/PageNotFound'),
